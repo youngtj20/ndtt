@@ -1,0 +1,186 @@
+{% extends 'core/base.html' %}
+{% load widget_tweaks %}
+
+{% block extra_css %} 
+
+    <!-- Include Editor style. -->
+    
+{% endblock %}
+
+{% block content %}
+<!--header-->
+{% include 'core/header.html' %}
+
+<!--aside-->
+{% include 'core/aside.html' %}
+
+<style type="text/css">
+    .form-horizontal .control-label {
+        text-align:left;
+    }
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        /*min-width: 100%;*/
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+    
+    #img-upload{
+        width: 100%;
+    }
+</style>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>Edit Question</h1>
+            <ol class="breadcrumb">
+                <li><a href="/myadmin"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active"><a href="/myadmin/question/create/">Add Question</li></a>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <p style="display: none;" id="qid">{{question.id}}</p>
+            <!-- Info boxes -->
+            <div class="row">
+                <form method="POST" enctype="multipart/form-data" class="dropzone" id="dropzone" action="/ap/question/api/edit/{{question.id}}/">
+                {% csrf_token %}
+                <div id="question">
+                {% include 'core/partial_question_edit.html' %}
+                </div>
+                <button type="button" id="editQ">Submit</button>
+            </form>
+            </div>
+            <div class="row" id="options">
+                {% include 'core/partial_option_list.html' %}
+            </div>
+        </section>
+    </div>
+
+<!--footer-->
+{% include 'core/footer.html' %}
+
+<!--control aside-->
+{% include 'core/c_aside.html' %}
+
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        $(document).on("click", "#action", function(){
+            var action = $(this).attr('name'),
+                option = $(this).parent().parent().attr('id');
+            if(action == 'edit'){
+                $.getJSON('/ap/option/api/edit/' + option + '/', function(jsonD){
+                    $('#' + option).after("<tr><td colspan='2'>" + jsonD['option'] + "</tr></td>");
+                })
+            }
+            else if(action == 'delete'){
+                $.getJSON('/ap/option/api/delete/' + option + '/', function(jsonD){
+                    $("#options").html(jsonD['option']);
+                })
+            }
+            else if(action == 'add'){
+                $id = $('#qid').text();
+                $.getJSON('/ap/option/api/create/' + $id + '/', function(jsonD){
+                    $("#foot").html(jsonD['option']);
+                })
+            };
+        });
+        $(document).on("click", "#addOpt", function(event){
+            event.preventDefault();
+            var form = $("#optionform");
+            var fData = new FormData(form[0]);
+            
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: form.attr('action'),
+                data: fData,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+    
+                    $("#options").html(data['option']);
+                    console.log("SUCCESS : ", data);
+                },
+                error: function (e) {
+    
+                    $("#options").text(e.responseText);
+                    console.log("ERROR : ", e);
+                }
+            });
+        });
+        $('#editQ').click(function(event){
+            event.preventDefault();
+            var form = $('#dropzone');
+            var fData = new FormData(form[0]);
+            
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: form.attr('action'),
+                data: fData,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+    
+                    $("#question").parent().parent().html(data['question']);
+                    console.log("SUCCESS : ", data);
+                },
+                error: function (e) {
+    
+                    $("#options").text(e.responseText);
+                    console.log("ERROR : ", e);
+                }
+            });
+        });
+        
+        $(document).on("click", "#editOp", function(event){
+            event.preventDefault();
+            var form = $('#pickup');
+            var fData = new FormData(form[0]);
+            
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: form.attr('action'),
+                data: fData,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+    
+                    $("#options").html(data['option']);
+                    console.log("SUCCESS : ", data);
+                },
+                error: function (e) {
+    
+                    $("#options").text(e.responseText);
+                    console.log("ERROR : ", e);
+                }
+            });
+        });
+
+    </script>
+{% endblock %}

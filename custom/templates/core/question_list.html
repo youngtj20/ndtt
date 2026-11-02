@@ -1,0 +1,111 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<!--header-->
+{% include 'core/header.html' %}
+
+<!--aside-->
+{% include 'core/aside.html' %}
+
+
+<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>View All Questions</h1>
+			
+			<ol class="breadcrumb">
+				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+				<li class="active">View Questions</li>
+			</ol>
+		</section>
+
+	<!-- Main content -->
+	<section class="content">
+	  	<!-- Info boxes -->
+	  	<div class="row col-md-12">
+			<div class="box box-info">
+				<div class="box-header with-border">
+					<h3 class="box-title">View All Users</h3>
+				</div>
+				
+				<div class="form-horizontal">
+					<div class="box-body">
+						<div class="form-group">
+							<label class="col-sm-2">Filter by category</label>
+							<div class="col-sm-2">
+								<select name='center' id='category' class="form-control">
+									<option>---select---</option>
+									{% for category in categories %}
+										<option value="{{ category.id}}">{{category.title }}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="col-sm-2">
+								<button id="categoryf" class="btn btn-primary">Show List</button>
+							</div>
+						</div>
+						<table class="table table-bordered" style="border-collapse:collapse;" cellspacing="0" border="1">
+							<thead>
+								<tr>
+									<th scope="col">SrNo</th>
+									<th scope="col">Question</th>
+									<th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody id='tbody'>
+							   
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="box-footer">
+					<span id="ContentPlaceHolder1_lblMsg" style="color:Red;"></span>
+				</div>
+			</div>
+
+		</div>
+		
+	  </div>
+	</section>
+	<!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+<!--footer-->
+{% include 'core/footer.html' %}
+
+<td>
+    <a class="fa fa-edit" href="/ap/exam/edit/{{exam.id}}/"></a>&nbsp;&nbsp;&nbsp;
+    <span id="ContentPlaceHolder1_grdMain_lblId_0" style="visibility: hidden;">2</span>
+    <input type="submit" value="Delete" onclick="return confirm(&#39;Are You Sure To Delete&#39;);" id="ContentPlaceHolder1_grdMain_btnDelete_0" class="btn btn-primary" />
+    <a href="/ap/exam/question/add/{{exam.id}}/" class="btn btn-primary">Add Question</a>
+</td>
+
+<!--control aside-->
+{% include 'core/c_aside.html' %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#categoryf').on("click", function(){
+			var categoryFilter = $('#category').find(':selected').attr('value');
+			console.log(categoryFilter);
+			$.getJSON('/ap/question/list/api/?category=' + categoryFilter, function(jd){
+				$('tbody').html('');
+				$.each(jd['questions'], function( obj ){
+					$('tbody').append('<tr>' +
+					'<td>' + (obj + 1) + '</td>' +
+					'<td><a href="/ap/question/detail/'  + jd['questions'][obj].id + '/">' + jd['questions'][obj].question + '</a></td>' +
+					'<td><a class="btn btn-primary" href="/ap/question/edit/' + jd['questions'][obj].id + '/">Edit</a>&nbsp;&nbsp;&nbsp;' +
+					'<a class="btn btn-primary" href="/ap/question/translate/' + jd['questions'][obj].id + '/">Translate</a>&nbsp;&nbsp;&nbsp;' +
+    				'<span style="visibility: hidden;">2</span></td>' +
+					'</tr>');
+				});
+			});
+		});
+	})
+</script>
+
+{% endblock %}

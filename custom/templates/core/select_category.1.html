@@ -1,0 +1,58 @@
+{% extends 'core/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+	<style type="text/css">
+		.content-wrapper, .right-side, .main-footer {
+            margin-left: 0; 
+        }
+        
+        .content-header {
+		    position: relative;
+		    padding: 0 15px 0 15px;
+		}
+	</style>
+	<div class="wrapper">
+		<div class="content-wrapper" style="margin: 0;">
+			<div class="navbar navbar-static-top" style="background-color: #3c8dbc;">
+				<center><h3 style="color: White;">Driver Theory Test</h3></center>
+			</div>
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<h1>Select License Category</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+					<li><a href="#">License Category</a></li>
+				</ol>
+			</div>
+			<div class="content">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="box box-info">
+							<div class="box-header with-border">
+								<h3 class="box-title">Select License Category</h3>
+							</div><!-- /.box-header -->
+							<div class="box-body">
+								<div class="row">
+									{% for category in categories %}
+										<a href="/ap/start/booking/?category={{category.id}}" style="color:white; font-size:xx-large;">
+											<div class="col-sm-3">
+												<div class="small-box bg-aqua" style="height: 130px;">
+													<div class="inner">
+														<center>License <br> {{ category.title}}</center>
+													</div>
+												</div>
+											</div>
+										</a>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% include 'core/footer.html' %}
+
+{% endblock %}

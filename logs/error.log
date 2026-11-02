@@ -1,0 +1,251 @@
+[2025-02-16 05:18:53 -0500] [9315] [INFO] Starting gunicorn 19.9.0
+[2025-02-16 05:18:53 -0500] [9315] [INFO] Listening at: http://0.0.0.0:8088 (9315)
+[2025-02-16 05:18:53 -0500] [9315] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2025-02-16 05:18:53 -0500] [9318] [INFO] Booting worker with pid: 9318
+[2025-02-16 11:22:18 +0100] [9318] [INFO] Parent changed, shutting down: <Worker 9318>
+[2025-02-16 11:22:18 +0100] [9318] [INFO] Worker exiting (pid: 9318)
+[2025-02-16 05:22:30 -0500] [10759] [INFO] Starting gunicorn 19.9.0
+[2025-02-16 05:22:30 -0500] [10759] [INFO] Listening at: http://0.0.0.0:8088 (10759)
+[2025-02-16 05:22:30 -0500] [10759] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2025-02-16 05:22:30 -0500] [10764] [INFO] Booting worker with pid: 10764
+[2025-02-21 06:34:40 -0500] [10759] [CRITICAL] WORKER TIMEOUT (pid:10764)
+[2025-02-21 12:34:40 +0100] [10764] [INFO] Worker exiting (pid: 10764)
+[2025-02-21 06:34:41 -0500] [28066] [INFO] Booting worker with pid: 28066
+[2025-05-22 05:29:25 -0400] [10759] [CRITICAL] WORKER TIMEOUT (pid:28066)
+[2025-05-22 10:29:35 +0100] [28066] [INFO] Worker exiting (pid: 28066)
+[2025-05-22 05:29:36 -0400] [24753] [INFO] Booting worker with pid: 24753
+[2025-08-18 07:12:14 -0400] [10759] [CRITICAL] WORKER TIMEOUT (pid:24753)
+[2025-08-18 07:12:20 -0400] [21470] [INFO] Booting worker with pid: 21470
+[2025-08-18 07:12:46 -0400] [10759] [CRITICAL] WORKER TIMEOUT (pid:21470)
+[2025-08-18 07:12:46 -0400] [21496] [INFO] Booting worker with pid: 21496
+[2025-08-18 07:13:16 -0400] [10759] [CRITICAL] WORKER TIMEOUT (pid:21496)
+[2025-08-18 07:13:17 -0400] [21496] [INFO] Worker exiting (pid: 21496)
+[2025-08-18 07:13:17 -0400] [21808] [INFO] Booting worker with pid: 21808
+[2025-08-18 07:14:15 -0400] [10759] [CRITICAL] WORKER TIMEOUT (pid:21808)
+[2025-08-18 12:14:15 +0100] [21808] [INFO] Worker exiting (pid: 21808)
+[2025-08-18 07:14:16 -0400] [22142] [INFO] Booting worker with pid: 22142
+[2025-09-24 16:12:55 -0400] [67580] [INFO] Starting gunicorn 19.9.0
+[2025-09-24 16:12:55 -0400] [67580] [INFO] Listening at: http://0.0.0.0:8087 (67580)
+[2025-09-24 16:12:55 -0400] [67580] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2025-09-24 16:12:55 -0400] [67589] [INFO] Booting worker with pid: 67589
+[2025-09-24 16:20:09 -0400] [68852] [INFO] Starting gunicorn 19.9.0
+[2025-09-24 16:20:09 -0400] [68852] [INFO] Listening at: http://0.0.0.0:8087 (68852)
+[2025-09-24 16:20:09 -0400] [68852] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2025-09-24 16:20:09 -0400] [68865] [INFO] Booting worker with pid: 68865
+[2025-09-24 16:20:39 -0400] [68852] [CRITICAL] WORKER TIMEOUT (pid:68865)
+[2025-09-24 21:20:39 +0100] [68865] [INFO] Worker exiting (pid: 68865)
+[2025-09-24 16:20:40 -0400] [68941] [INFO] Booting worker with pid: 68941
+[2025-09-24 17:02:42 -0400] [68852] [INFO] Handling signal: term
+[2025-09-24 22:02:43 +0100] [68941] [INFO] Worker exiting (pid: 68941)
+[2025-09-24 17:02:43 -0400] [68852] [INFO] Shutting down: Master
+[2025-09-24 17:59:34 -0400] [18278] [INFO] Starting gunicorn 19.9.0
+[2025-09-24 17:59:34 -0400] [18278] [INFO] Listening at: http://0.0.0.0:8087 (18278)
+[2025-09-24 17:59:34 -0400] [18278] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2025-09-24 17:59:34 -0400] [18292] [INFO] Booting worker with pid: 18292
+[2025-09-24 18:00:04 -0400] [18278] [CRITICAL] WORKER TIMEOUT (pid:18292)
+[2025-09-24 23:00:04 +0100] [18292] [INFO] Worker exiting (pid: 18292)
+[2025-09-24 18:00:04 -0400] [18377] [INFO] Booting worker with pid: 18377
+[2025-09-24 18:15:57 -0400] [25104] [INFO] Starting gunicorn 19.9.0
+[2025-09-24 18:15:57 -0400] [25104] [INFO] Listening at: http://0.0.0.0:8087 (25104)
+[2025-09-24 18:15:57 -0400] [25104] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2025-09-24 18:15:57 -0400] [25117] [INFO] Booting worker with pid: 25117
+[2025-09-24 18:16:27 -0400] [25104] [CRITICAL] WORKER TIMEOUT (pid:25117)
+[2025-09-24 23:16:27 +0100] [25117] [INFO] Worker exiting (pid: 25117)
+[2025-09-24 18:16:27 -0400] [25237] [INFO] Booting worker with pid: 25237
+[2025-09-24 18:16:57 -0400] [25104] [CRITICAL] WORKER TIMEOUT (pid:25237)
+[2025-09-24 23:16:57 +0100] [25237] [INFO] Worker exiting (pid: 25237)
+[2025-09-24 18:16:57 -0400] [25489] [INFO] Booting worker with pid: 25489
+[2025-09-24 18:28:02 -0400] [27573] [INFO] Starting gunicorn 19.9.0
+[2025-09-24 18:28:02 -0400] [27573] [INFO] Listening at: http://0.0.0.0:8087 (27573)
+[2025-09-24 18:28:02 -0400] [27573] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2025-09-24 18:28:02 -0400] [27586] [INFO] Booting worker with pid: 27586
+[2025-09-25 22:42:45 -0400] [27573] [INFO] Handling signal: term
+[2025-09-26 03:42:45 +0100] [27586] [INFO] Worker exiting (pid: 27586)
+[2025-09-25 22:42:45 -0400] [27573] [INFO] Shutting down: Master
+[2025-09-26 07:22:49 -0400] [4176] [INFO] Starting gunicorn 19.9.0
+[2025-09-26 07:22:49 -0400] [4176] [INFO] Listening at: http://0.0.0.0:8087 (4176)
+[2025-09-26 07:22:49 -0400] [4176] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2025-09-26 07:22:49 -0400] [4194] [INFO] Booting worker with pid: 4194
+[2025-09-26 13:54:45 -0400] [4176] [INFO] Handling signal: term
+[2025-09-26 18:54:45 +0100] [4194] [INFO] Worker exiting (pid: 4194)
+[2025-09-26 13:54:45 -0400] [4176] [INFO] Shutting down: Master
+[2025-09-28 03:46:14 -0400] [31820] [INFO] Starting gunicorn 19.9.0
+[2025-09-28 03:46:14 -0400] [31820] [INFO] Listening at: http://0.0.0.0:8088 (31820)
+[2025-09-28 03:46:14 -0400] [31820] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2025-09-28 03:46:14 -0400] [31823] [INFO] Booting worker with pid: 31823
+[2025-09-28 03:50:39 -0400] [1235] [INFO] Starting gunicorn 19.9.0
+[2025-09-28 03:50:39 -0400] [1235] [INFO] Listening at: http://0.0.0.0:8088 (1235)
+[2025-09-28 03:50:39 -0400] [1235] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2025-09-28 03:50:39 -0400] [1238] [INFO] Booting worker with pid: 1238
+[2025-10-09 08:28:13 -0400] [1235] [CRITICAL] WORKER TIMEOUT (pid:1238)
+[2025-10-09 13:28:14 +0100] [1238] [INFO] Worker exiting (pid: 1238)
+[2025-10-09 08:28:16 -0400] [28426] [INFO] Booting worker with pid: 28426
+[2025-11-05 03:57:33 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:28426)
+[2025-11-05 09:57:33 +0100] [28426] [INFO] Worker exiting (pid: 28426)
+[2025-11-05 03:57:35 -0500] [22677] [INFO] Booting worker with pid: 22677
+[2025-11-05 06:26:40 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:22677)
+[2025-11-05 12:26:40 +0100] [22677] [INFO] Worker exiting (pid: 22677)
+[2025-11-05 06:26:41 -0500] [19886] [INFO] Booting worker with pid: 19886
+[2025-11-20 06:54:59 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:19886)
+[2025-11-20 12:54:59 +0100] [19886] [INFO] Worker exiting (pid: 19886)
+[2025-11-20 06:55:00 -0500] [27351] [INFO] Booting worker with pid: 27351
+[2025-11-21 08:26:20 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:27351)
+[2025-11-21 14:26:20 +0100] [27351] [INFO] Worker exiting (pid: 27351)
+[2025-11-21 08:26:21 -0500] [14834] [INFO] Booting worker with pid: 14834
+[2025-11-21 10:22:28 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:14834)
+[2025-11-21 16:22:28 +0100] [14834] [INFO] Worker exiting (pid: 14834)
+[2025-11-21 10:22:29 -0500] [31577] [INFO] Booting worker with pid: 31577
+[2025-11-21 10:23:55 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:31577)
+[2025-11-21 16:23:55 +0100] [31577] [INFO] Worker exiting (pid: 31577)
+[2025-11-21 10:23:55 -0500] [31955] [INFO] Booting worker with pid: 31955
+[2025-11-26 05:22:16 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:31955)
+[2025-11-26 11:22:16 +0100] [31955] [INFO] Worker exiting (pid: 31955)
+[2025-11-26 05:22:17 -0500] [30147] [INFO] Booting worker with pid: 30147
+[2025-11-27 04:56:11 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:30147)
+[2025-11-27 10:56:11 +0100] [30147] [INFO] Worker exiting (pid: 30147)
+[2025-11-27 04:56:11 -0500] [7505] [INFO] Booting worker with pid: 7505
+[2025-11-27 07:31:02 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:7505)
+[2025-11-27 13:31:02 +0100] [7505] [INFO] Worker exiting (pid: 7505)
+[2025-11-27 07:31:03 -0500] [6642] [INFO] Booting worker with pid: 6642
+[2025-12-02 09:44:56 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:6642)
+[2025-12-02 15:44:56 +0100] [6642] [INFO] Worker exiting (pid: 6642)
+[2025-12-02 09:44:56 -0500] [21277] [INFO] Booting worker with pid: 21277
+[2025-12-03 05:33:00 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:21277)
+[2025-12-03 11:33:00 +0100] [21277] [INFO] Worker exiting (pid: 21277)
+[2025-12-03 05:33:00 -0500] [24165] [INFO] Booting worker with pid: 24165
+[2025-12-08 05:57:15 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:24165)
+[2025-12-08 11:57:15 +0100] [24165] [INFO] Worker exiting (pid: 24165)
+[2025-12-08 05:57:16 -0500] [10726] [INFO] Booting worker with pid: 10726
+[2025-12-08 14:36:56 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:10726)
+[2025-12-08 20:36:56 +0100] [10726] [INFO] Worker exiting (pid: 10726)
+[2025-12-08 14:36:56 -0500] [798] [INFO] Booting worker with pid: 798
+[2025-12-09 11:10:56 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:798)
+[2025-12-09 17:10:56 +0100] [798] [INFO] Worker exiting (pid: 798)
+[2025-12-09 11:10:57 -0500] [24996] [INFO] Booting worker with pid: 24996
+[2025-12-24 03:24:38 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:24996)
+[2025-12-24 09:24:38 +0100] [24996] [INFO] Worker exiting (pid: 24996)
+[2025-12-24 03:24:39 -0500] [17172] [INFO] Booting worker with pid: 17172
+[2026-01-09 08:09:41 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:17172)
+[2026-01-09 14:09:41 +0100] [17172] [INFO] Worker exiting (pid: 17172)
+[2026-01-09 08:09:42 -0500] [5997] [INFO] Booting worker with pid: 5997
+[2026-01-09 08:19:55 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:5997)
+[2026-01-09 14:19:55 +0100] [5997] [INFO] Worker exiting (pid: 5997)
+[2026-01-09 08:19:56 -0500] [10109] [INFO] Booting worker with pid: 10109
+[2026-01-13 05:49:32 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:10109)
+[2026-01-13 11:49:32 +0100] [10109] [INFO] Worker exiting (pid: 10109)
+[2026-01-13 05:49:33 -0500] [8527] [INFO] Booting worker with pid: 8527
+[2026-01-16 07:09:13 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:8527)
+[2026-01-16 13:09:13 +0100] [8527] [INFO] Worker exiting (pid: 8527)
+[2026-01-16 07:09:13 -0500] [14365] [INFO] Booting worker with pid: 14365
+[2026-01-20 06:22:46 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:14365)
+[2026-01-20 12:22:46 +0100] [14365] [INFO] Worker exiting (pid: 14365)
+[2026-01-20 06:22:47 -0500] [6596] [INFO] Booting worker with pid: 6596
+[2026-01-20 06:56:16 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:6596)
+[2026-01-20 12:56:16 +0100] [6596] [INFO] Worker exiting (pid: 6596)
+[2026-01-20 06:56:17 -0500] [21333] [INFO] Booting worker with pid: 21333
+[2026-01-23 06:09:58 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:21333)
+[2026-01-23 12:09:58 +0100] [21333] [INFO] Worker exiting (pid: 21333)
+[2026-01-23 06:09:59 -0500] [28574] [INFO] Booting worker with pid: 28574
+[2026-01-23 06:11:41 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:28574)
+[2026-01-23 12:11:41 +0100] [28574] [INFO] Worker exiting (pid: 28574)
+[2026-01-23 06:11:42 -0500] [29517] [INFO] Booting worker with pid: 29517
+[2026-01-23 07:37:29 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:29517)
+[2026-01-23 13:37:29 +0100] [29517] [INFO] Worker exiting (pid: 29517)
+[2026-01-23 07:37:30 -0500] [32120] [INFO] Booting worker with pid: 32120
+[2026-01-23 08:11:24 -0500] [1235] [CRITICAL] WORKER TIMEOUT (pid:32120)
+[2026-01-23 14:11:24 +0100] [32120] [INFO] Worker exiting (pid: 32120)
+[2026-01-23 08:11:25 -0500] [13965] [INFO] Booting worker with pid: 13965
+*** Starting uWSGI 2.0.31 (64bit) on [Mon Feb  2 09:22:57 2026] ***
+compiled with version: 13.3.0 on 02 February 2026 09:22:34
+os: Linux-6.8.0-94-generic #96-Ubuntu SMP PREEMPT_DYNAMIC Fri Jan  9 20:36:55 UTC 2026
+nodename: ubuntu
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 2
+current working directory: /
+detected binary path: /www/wwwroot/ogun.ndtt.ng/22466bd2c037afb1bf46dd690ef5229e_venv/bin/uwsgi
+setgid() to 1000
+setuid() to 1000
+chdir() to /www/wwwroot/ogun.ndtt.ng
+your processes number limit is 15319
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 0.0.0.0:8088 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:38485 (port auto-assigned) fd 3
+Python version: 3.7.9 (default, Feb  2 2026, 09:19:16)  [GCC 13.3.0]
+Python main interpreter initialized at 0x55d7ba4ba440
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 166752 bytes (162 KB) for 2 cores
+*** Operational MODE: threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x55d7ba4ba440 pid: 94420 (default app)
+mountpoint  already configured. skip.
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 94420)
+spawned uWSGI worker 1 (pid: 94422, cores: 2)
+spawned uWSGI http 1 (pid: 94424)
+Mon Feb  2 10:27:44 2026 - uWSGI worker 1 error: the master disconnected from this worker. Shutting down the worker.
+Mon Feb  2 10:27:44 2026 - uWSGI worker 1 error: the master disconnected from this worker. Shutting down the worker.
+*** Starting uWSGI 2.0.31 (64bit) on [Mon Feb  2 09:29:14 2026] ***
+compiled with version: 13.3.0 on 02 February 2026 09:22:34
+os: Linux-6.8.0-94-generic #96-Ubuntu SMP PREEMPT_DYNAMIC Fri Jan  9 20:36:55 UTC 2026
+nodename: ubuntu
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 2
+current working directory: /
+detected binary path: /www/wwwroot/ogun.ndtt.ng/22466bd2c037afb1bf46dd690ef5229e_venv/bin/uwsgi
+setgid() to 1000
+setuid() to 1000
+chdir() to /www/wwwroot/ogun.ndtt.ng
+your processes number limit is 15319
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 0.0.0.0:8088 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:45775 (port auto-assigned) fd 3
+Python version: 3.7.9 (default, Feb  2 2026, 09:19:16)  [GCC 13.3.0]
+*** Starting uWSGI 2.0.31 (64bit) on [Mon Feb  2 09:29:14 2026] ***
+compiled with version: 13.3.0 on 02 February 2026 09:22:34
+os: Linux-6.8.0-94-generic #96-Ubuntu SMP PREEMPT_DYNAMIC Fri Jan  9 20:36:55 UTC 2026
+nodename: ubuntu
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 2
+current working directory: /
+detected binary path: /www/wwwroot/ogun.ndtt.ng/22466bd2c037afb1bf46dd690ef5229e_venv/bin/uwsgi
+setgid() to 1000
+setuid() to 1000
+chdir() to /www/wwwroot/ogun.ndtt.ng
+your processes number limit is 15319
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (0.0.0.0:8088).
+bind(): Address already in use [core/socket.c line 769]
+Python main interpreter initialized at 0x642e31912470
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 166752 bytes (162 KB) for 2 cores
+*** Operational MODE: threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x642e31912470 pid: 94717 (default app)
+mountpoint  already configured. skip.
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 94717)
+spawned uWSGI worker 1 (pid: 94722, cores: 2)
+spawned uWSGI http 1 (pid: 94724)
+Mon Feb  2 10:29:30 2026 - uWSGI worker 1 error: the master disconnected from this worker. Shutting down the worker.
+Mon Feb  2 10:29:30 2026 - uWSGI worker 1 error: the master disconnected from this worker. Shutting down the worker.
+[2026-02-02 09:34:10 +0000] [96157] [INFO] Starting gunicorn 19.9.0
+[2026-02-02 09:34:10 +0000] [96157] [INFO] Listening at: http://0.0.0.0:8088 (96157)
+[2026-02-02 09:34:10 +0000] [96157] [INFO] Using worker: geventwebsocket.gunicorn.workers.GeventWebSocketWorker
+[2026-02-02 09:34:10 +0000] [96161] [INFO] Booting worker with pid: 96161

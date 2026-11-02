@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	{% load static %}
+
+	<title>Driver Theory Test</title>
+	{% block page_css %}
+	<link rel="stylesheet" href="/static/core/assets/css/bootstrap.min.css"/>
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+  	<link rel="stylesheet" href="/static/core/assets/css/owl.carousel.css"/>
+  	<link rel="stylesheet" href="/static/core/assets/css/magnific-popup.css"/>
+  	<link rel="stylesheet" href="/static/core/assets/css/animate.min.css"/>
+  	<link rel="stylesheet" href="/static/core/assets/css/style.css"/>
+  	
+	{% endblock %}
+	
+	{% block extra_css %} {% endblock %}
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+	{% block body %}
+	<body>
+		<!--====== Top Section Start ======-->
+		<div class="top-element">
+			<div class="container">
+				<!-- Navigation Menu -->
+				<nav class="mainmenu">
+					<ul class="menu-list">
+						<li><a href="/">Home</a></li>
+						<li><a href="/ap/select/category/">Booking</a></li>
+						<li><a href="/ap/candidate_verification">Take Test</a></li>
+					</ul>
+				</nav>
+				<!-- Top Social Links -->
+				<div class="social">
+					<a href="/">Home <span class="sr-only">(current)</span></a> &nbsp;
+					<a href="/ap/select/category/">Booking</a>
+				</div>
+			</div>
+		</div>
+    
+	{% endblock %}
+
+	{% block content %}
+		main content goes here
+	{% endblock %}
+
+	<footer class="footer-section">
+  		<div class="container pt20 pb20">
+  			<p style="color:#fff;">Copyright &copy; 2017 <a href="https://logicaladdress.com">LogicalAddress Ltd.</a></p>
+  		</div>
+  	</footer>
+    <!--====== Javascripts & Jquery ======-->
+	<script src="/static/core/plugins/jQuery/jQuery-2.2.0.min.js"></script>
+
+	{% block page_js %}
+	<script>
+		$.widget.bridge('uibutton', $.ui.button);
+	</script>
+	<!--<script src="/static/core/bootstrap/js/jquery-2.1.4.min.js"></script>-->
+	<script src="/static/core/bootstrap/js/jquery.parallax.js"></script>
+	<script src="/static/core/bootstrap/js/jquery.simple-text-rotator.min.js"></script>
+	<script src="/static/core/bootstrap/js/isotope.pkgd.min.js"></script>
+	<script src="/static/core/bootstrap/js/owl.carousel.min.js"></script>
+	<script src="/static/core/bootstrap/js/magnific-popup.min.js"></script>
+	<script src="/static/core/bootstrap/js/jquery.scrollUp.js"></script>
+	<script src="/static/core/bootstrap/js/wow.min.js"></script>
+	<script src="/static/core/bootstrap/js/particles.min.js"></script>
+	<script src="/static/core/bootstrap/js/init-particles.js"></script>
+	<script src="/static/core/bootstrap/js/js/main.js"></script>
+		
+	<!-- daterangepicker -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+	<script src="/static/core/plugins/daterangepicker/daterangepicker.js"></script>
+	<!-- datepicker -->
+	<script src="/static/core/plugins/datepicker/bootstrap-datepicker.js"></script>
+	<!-- Bootstrap WYSIHTML5 -->
+	<script src="/static/core/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+
+
+	<script>
+		$(document).ready(function () {
+		    $('.date').datepicker({
+		        format: "yyyy-mm-dd",
+		        autoclose: true,
+		        todayHighlight: true,
+		        clearBtn: true,
+		    });
+		});
+	</script>
+	{% endblock %}
+
+	{% block extra_js %} {% endblock %}
+</body>
+</html>

@@ -1,0 +1,207 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<style type="text/css">
+      .login-box, .register-box {
+          width: 60%;
+          margin: 5% auto;
+      }
+      .login-box-body, .register-box-body {
+          background: #fff;
+          padding: 20px;
+          border-top: 0;
+          color: #666;
+      }
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        .credit-card {
+            /*width: 360px;*/
+            /*height: 400px;*/
+            margin: 20px auto 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #fff;
+            box-shadow: 1px 2px 3px 0 rgba(0,0,0,.10);
+        }
+        .form-header {
+            height: 60px;
+            padding: 20px 30px 0;
+            border-bottom: 1px solid #e1e8ee;
+        }
+         
+        .form-body {
+            /*height: 340px;*/
+            padding: 20px 30px 20px;
+        }
+        .title {
+            font-size: 18px;
+            margin: 0;
+            color: #5e6977;
+        }
+        .card-phone {
+            width: 100%;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border: 2px solid #e1e8ee;
+            border-radius: 6px;
+        }
+        .proceed-btn {
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            border-color: transparent;
+            border-radius: 6px;
+        }
+        .proceed-btn {
+            margin-bottom: 10px;
+            /*background: #7dc855;*/
+        }
+        .cvv-details {
+            font-size: 12px;
+            font-weight: 300;
+            line-height: 16px;
+            /*float: right;*/
+            margin-bottom: 20px;
+        }
+         
+        .form-header p {
+            margin-top: 6px;
+            margin-bottom: 6px;
+            font-size: 12px;
+            font-weight: 300;
+            /*line-height: 16px;*/
+        }
+        
+        .w-600 {
+            width: 60%;
+        }
+        
+        .content-wrapper, .right-side, .main-footer {
+            margin-left: 0;
+        }
+</style>
+<style>
+#loading-indicator {
+ position: absolute;
+ top:50%;
+ left: 50%;
+ bottom:140px;
+ background: url('/static/core/assets/img/ajax-loader.gif') scroll no-repeat;
+ background-size:contain;
+ display:none;
+}
+</style>
+<div class="navbar navbar-static-top text-center" style="background-color: #3c8dbc;">
+    <h3 style="color: White;">Driver Theory Test</h3>
+</div>
+
+<div id="loading-indicator" class="container"></div>
+<div class="login-box">
+    <div class="login-box-body">
+        <div class="card">
+            <form id='confirm' class="credit-card">
+                <div class="form-header">
+                    <h4 class="title">Confirm Center to Sync Data</h4>
+                    <!--<p style="margin-bottom: 20px;">Below are your transaction details</p>-->
+                </div>
+                <div class="cvv-details">
+                    <!--<p>Enter</p>-->
+                </div>
+                <div class="form-body">
+                    
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class='form-group'> 
+                                <label>Center Name</label>
+                                <input type="text" name="name" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class='form-group'> 
+                                <label>Cender Code</label>
+                                <input type="text" name="code" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Center Email</label>
+                                <input type="email" name="email" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Center Password</label>
+                                <input type="password" name="password" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type='hidden' name="remote" id='remote' value="{{remote}}" />
+                                <input type="hidden"  name="destination" id="destination" value="{{request.GET.destination}}" />
+                                <button type='button' class="btn btn-warning btn-lg" onclick="window.history.go(-1); return false;" id='cancelButton'>Go Back</button>
+                                <button type='button' class="btn btn-success btn-lg pull-right w-600" id='submitbutton'>Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row padding col-md-8 col-md-offset-2">
+    <div id="message"></div>
+</div>
+{% include 'core/footer.html' %}
+{% endblock %}
+
+{% block extra_js %}
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>-->
+<script type="text/javascript">
+
+    $.ajaxSetup({
+        beforeSend:function(){
+            // show image here
+            $('#loading-indicator').show();
+            $('#submitbutton').prop('disabled', true);;
+        },
+        complete:function(){
+            // hide image here
+            $('#loading-indicator').hide();
+            $('#submitbutton').prop('disabled', false);;
+        }
+    });
+
+    $(document).ready(function(){
+        $('#submitbutton').click(function(){
+            var remote = $('#remote').attr('value'),
+                data = $('form').serialize();
+            console.log( this );
+            $.ajax({
+              type: "post",
+              headers: { "Accept": "application/json"},
+              url: remote + "confirm/center/",
+              data: data,
+              crossDomain: true
+            })
+              .done(function( msg ) {
+                console.log( msg );
+              });
+
+
+        });
+    })
+</script>
+{% endblock %}

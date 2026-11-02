@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{title}}</title>
+
+    <script src="/static/custom/js/jquery.js"></script>
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/custom/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/custom/css/bootstrap-datetimepicker.min.css" />
+    <!-- Date Picker -->
+	<link rel="stylesheet" href="/static/core/plugins/datepicker/datepicker3.css">
+	<!-- Daterange picker -->
+	<link rel="stylesheet" href="/static/core/plugins/daterangepicker/daterangepicker-bs3.css">
+
+    <!-- Custom CSS -->
+    <link href="/static/custom/css/scrolling-nav.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+        <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Oswald:400,700,300' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+
+      /* Import dulu */
+        @import url(http://fonts.googleapis.com/css?family=Roboto);
+
+        body {
+          letter-spacing: 0.1em;
+          color: #444;
+          /*background:#2e2e2e;*/
+          /*background-image: url('/static/custom/images/viobg.jpg');*/
+          background-position: center;
+          background-attachment: fixed;
+          /*Added Recently*/
+          font-family: 'Roboto', sans-serif;
+          font-size:14px;
+          line-height:1.5;
+          cursor:default;
+          color:#707070
+        }
+
+        h1, h2, h3, h4, h5, h6{
+          font-family: 'Oswald', sans-serif;
+          font-weight:normal;
+          margin-bottom:10px;
+        }
+
+        .mother-frame{
+            background-color: #000000; 
+            border-radius: 10px;
+            /*padding:10px; */
+            min-height: 400px;
+        }
+
+        .child-frame {
+            background-color: #fff; 
+            border-radius: 10px;
+            margin: 10px; 
+            padding: 10px;
+            /*min-height: 400px;*/
+            z-index: 300;
+        }
+
+        .checkbox {
+            background-color: rgb(239, 239, 239); 
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .round {
+            border-radius: 40px;
+            margin-right: 20px;
+        }
+
+        .but {
+            margin-right:30px; 
+            width: 50px; 
+            height: 45px;
+            margin: 10px;
+            vertical-align: middle;
+        }
+
+    </style>
+    <script type="text/javascript">
+    $( document ).ready(function() {
+        $("#id_photo").change(function(e) {
+        // for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
+            var file = e.originalEvent.srcElement.files[0];
+            var img = document.getElementById("avater_display");
+            var reader = new FileReader();
+            reader.onloadend = function() {
+                 img.src = reader.result;
+            }
+            reader.readAsDataURL(file);
+            $("#avater_display").after(img);
+        });
+    });
+    </script>
+    
+</head>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Intro Section -->
+    <section id="intro" class="" style="padding-top: 50px;">
+        <div class="container mother-frame">
+            <div class="row child-frame">
+                <div class="col-lg-12 ">
+                    <h1>Booking</h1>
+                    <div id="avater" style="float: right"><img onclick="{% if not booking %} $('#id_photo').click(); {% endif %}" id="avater_display" src="{% if booking.photo %} {{booking.photo.url}} {% else %}  {{'/static/custom/images/avater.png'}} {% endif %}" width="100" height="100"></div>
+                    {% if booking %}
+                    <h3><center>Examination Number #{{booking.examination_number}}</center></h3>
+                    {% endif %}
+                    <div style="clear: both;"></div>
+                    <form method="POST" action="/ap/booking" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <div style="float: right;">
+                            <input id="id_photo"  accept="image/jpeg, image/png" name="photo" type="file" formtarget="avater" style="visibility: hidden" />
+                        </div>
+                        <div style="clear: both;"></div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="first_name">First Name:</label>
+                                    <input {{ booking|yesno:"disabled," }} value='{{ booking.first_name|default_if_none:"" }}' type="text" class="form-control" id="first_name" name="first_name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="last_name">Last Name:</label>
+                                    <input {{ booking|yesno:"disabled," }} value='{{ booking.last_name|default_if_none:"" }}' type="text" class="form-control" id="last_name" name="last_name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="mobile_number">Mobile Number</label>
+                                    <input {{ booking|yesno:"disabled," }} value='{{ booking.mobile_number|default_if_none:"" }}' type="text" class="form-control" id="mobile_number" name="mobile_number">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="email_address">Email Address:</label>
+                                    <input {{ booking|yesno:"disabled," }} value='{{ booking.email_address|default_if_none:"" }}' type="email" class="form-control" id="email_address" name="email_address">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="address">Address:</label>
+                                    <textarea {{ booking|yesno:"disabled," }} class="form-control" rows="3" id="address" name="address">
+                                        {{ booking.address|default_if_none:"" }}
+                                    </textarea>
+                                </div>
+                            </div>                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4">                                
+                                <div class="form-group">
+                                    <label for="date_of_birth">Date of Birth:</label>
+                                    <input {{ booking|yesno:"disabled," }} value='{{ booking.date_of_birth|default_if_none:"" }}' type="text" class="form-control" id="date_of_birth" name="date_of_birth">
+                                </div>
+                                {% if not booking %}
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $('#date_of_birth').datetimepicker({
+                                            format: 'YYYY-MM-DD',
+                                        });
+                                    });
+                                </script>
+                                {% endif %}
+                            </div>
+                            <div class="col-lg-4">                                
+                                <div class="form-group">
+                                    <label for="preffered_date_and_time_of_test">Preferred Date and Time of Test:</label>
+                                    <input {{ booking|yesno:"disabled," }} value='{{ booking.preffered_date|default_if_none:"" }}' type="text" class="form-control" id="preffered_date_and_time_of_test" name="preffered_date_and_time_of_test">
+                                </div>
+                                    {% if not booking %}
+                                    <script type="text/javascript">
+                                        $(function () {
+                                            $('#preffered_date_and_time_of_test').datetimepicker({
+                                                sideBySide: true,
+                                                showTodayButton: true,
+                                                format: 'YYYY-MM-DD hh:mm:ss',
+                                            });
+                                        });
+                                    </script>
+                                {% endif %}
+                            </div>
+                            <div class="col-lg-4">                                
+                                <div class="form-group">
+                                    <label for="drive_test_type">Drive Test Type:</label>
+                                    <select {{ booking|yesno:"disabled," }} id="drive_test_type" name="drive_test_type">
+                                        {% if booking %}
+                                        <option value=""> 
+                                        {{ booking.drive_test_type|default_if_none:"" }}</option>
+                                        {% endif %}
+                                        <option value="new">New</option>
+                                        <option value="renew">Re-New</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">                                
+                                <div class="form-group">
+                                    <label for="exam_preferred_language">Exam Preferred Language:</label>
+                                   <select {{ booking|yesno:"disabled," }} id="exam_preferred_language" name="exam_preferred_language">
+
+                                        {% if booking.exam_preferred_language == "en" %}
+                                                <option>English</option>
+                                        {% endif %}
+
+                                        {% if booking.exam_preferred_language == "ho" %}
+                                                <option>Hause</option>
+                                        {% endif %}
+
+                                        {% if booking.exam_preferred_language == "yo" %}
+                                                <option>Yoruba</option>
+                                        {% endif %}
+
+                                        {% if booking.exam_preferred_language == "ig" %}
+                                                <option>Igbo</option>
+                                        {% endif %}
+
+                                        {% if booking.exam_preferred_language == "pg" %}
+                                                <option>Pidgin</option>
+                                        {% endif %}
+                                        <option value="en">English</option>
+                                        <option value="ho">Hausa</option>
+                                        <option value="yo">Yoruba</option>
+                                        <option value="ig">Igbo</option>
+                                        <option value="pg">Pidgin</option>
+                                    </select>                                   
+                                </div>
+                            </div>
+                            <div class="col-lg-6">                                
+                                <div class="form-group">
+                                <label for="exam_venue">Exam venue</label>
+                                    <select {{ booking|yesno:"disabled," }} id="exam_venue" name="exam_venue">
+                                        {% if booking %}
+                                        <option value="" selected="selected"> 
+                                        {{ booking.exam_venue|default_if_none:"" }}</option>
+                                        {% endif %}
+
+                                        {% for venue in venues %}
+                                        <option value="{{venue.id}}">{{venue}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                {% if not booking %}
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                                {% endif %}
+                                <a href="/ap/logout">Logout</a>
+                            </div>
+                        </div>
+                    </form>                   
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- jQuery -->
+    
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/custom/js/bootstrap.min.js"></script>
+    <script src="/static/custom/js/moment.min.js"></script>
+    <!-- Scrolling Nav JavaScript -->
+    <script src="/static/custom/js/jquery.easing.min.js"></script>
+    <script src="/static/custom/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/static/core/plugins/datepicker/bootstrap-datepicker.js"></script>
+
+    
+</body>
+
+</html>

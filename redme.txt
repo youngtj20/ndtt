@@ -1,0 +1,42 @@
+to run on local windows
+ Activate the virtual environment first
+bash
+source .venv/Scripts/activate
+python manage.py runserver
+
+.\.venv\Scripts\python.exe manage.py runserver 127.0.0.1:8000
+
+
+Full deploy sequence, on the Linux server
+
+cd /www/wwwroot/ogun.ndtt.ng
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt gunicorn
+Create .env there (not committed — copy from .env.example and fill real values):
+
+
+APP_ENV=PRODUCTION
+DEBUG=False
+SECRET_KEY=1ocaWnxYk0wMhu45GdsnOpZGfL8sT2ZiyWSIoyaAYLkBvMx-B_NfMEpKkafIZnO--dw
+ALLOWED_HOSTS=ogun.ndtt.ng
+DATABASE_BACKEND=django.db.backends.mysql
+DATABASE_NAME=ndtt
+DATABASE_USER=<prod db user>
+DATABASE_PASS=<prod db password>
+DATABASE_HOST=localhost
+DATABASE_PORT=3306
+PIE_SECRET_KEY=<rotated real payment key>
+Then:
+
+
+mkdir -p logs
+python manage.py migrate
+python manage.py collectstatic --noinput
+Install and start the service:
+
+
+sudo cp deploy/ndtt.service /etc/systemd/system/ndtt.service
+sudo systemctl daemon-reload
+sudo systemctl enable --now ndtt
+sudo systemctl status ndtt

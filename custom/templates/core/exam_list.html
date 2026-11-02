@@ -1,0 +1,90 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<!--header-->
+{% include 'core/header.html' %}
+
+<!--aside-->
+{% include 'core/aside.html' %}
+
+
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        View All Exam
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/ap/dashboard/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">View All Exam</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <!-- Info boxes -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                                View All Exam</h3>
+                </div>
+                <div class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="row" style="margin-left: 2%;">
+                                <div>
+                                    <table class="table table-bordered" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_grdMain" style="border-collapse:collapse;">
+                                        <tr>
+                                            <th scope="col">Exam Name</th>
+                                            <th scope="col">Category Name</th>
+                                            <th scope="col">Duration</th>
+                                            <th scope="col">No Of Question</th>
+                                            <th scope="col">Passing Marks</th>
+                                            <th scope="col">Active</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                        {% for exam in exams %}
+                                          <tr>
+                                            <td>{{ exam.title }}</td>
+                                            <td>{{ exam.category.title }}</td>
+                                            <td>{{ exam.duration }}</td>
+                                            <td>{{ exam.number_of_question }}</td>
+                                            <td>{{ exam.pass_mark }}</td>
+                                            <td>{{exam.is_active}}</td>
+                                            <td>
+                                                <a class="fa fa-edit" href="/ap/exam/edit/{{exam.id}}/"></a>&nbsp;&nbsp;&nbsp;
+                                                <span id="ContentPlaceHolder1_grdMain_lblId_0" style="visibility: hidden;">2</span>
+                                                <!--<input type="submit" value="Activate"  id="activate" class="btn btn-primary" />-->
+                                                <a href="/ap/exam/question/add/{{exam.id}}/" class="btn btn-primary">Add Question</a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <span id="ContentPlaceHolder1_lblMsg" style="color:Red;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+<!--footer-->
+{% include 'core/footer.html' %}
+
+<!--control aside-->
+{% include 'core/c_aside.html' %}
+
+{% endblock %}

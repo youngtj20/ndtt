@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 32" preserveAspectRatio="none">
+  <defs>
+    <pattern id="bars" width="23" height="32" patternUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="2" height="32" fill="#10221a"/>
+      <rect x="4" y="0" width="3" height="32" fill="#10221a"/>
+      <rect x="9" y="0" width="1" height="32" fill="#10221a"/>
+      <rect x="12" y="0" width="4" height="32" fill="#10221a"/>
+      <rect x="18" y="0" width="2" height="32" fill="#10221a"/>
+      <rect x="21" y="0" width="1" height="32" fill="#10221a"/>
+    </pattern>
+  </defs>
+  <rect width="200" height="32" fill="url(#bars)"/>
+</svg>

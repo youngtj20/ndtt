@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>exam</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/custom/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <!-- <link href="/static/custom/css/scrolling-nav.css" rel="stylesheet"> -->
+
+    <!-- jQuery -->
+    <script src="/static/custom/js/jquery.js"></script>
+    <script src="/static/custom/js/camera.js"></script>
+    <script src="/static/custom/js/knockout-3.4.0.js"></script>
+    <script src="/static/custom/js/driving_test.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+
+        .mother-frame{
+            background-color: #000000; 
+            border-radius: 10px;
+            /*padding:10px; */
+            min-height: 400px;
+            /*background-image: url('img/vio.png');*/
+        }
+
+        .child-frame {
+            background-color: #fff; 
+            border-radius: 10px;
+            margin: 10px; 
+            margin-top: 10px;
+            padding: 10px;
+            z-index: 300;
+            min-height: 400px;
+        }
+
+        .option ul{
+          list-style: none;
+        }
+
+        .option_list li {
+            background-color: rgb(239, 239, 239); 
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px;
+        }
+
+        .round {
+            /*border-radius: 40px;*/
+            /*margin-right: 20px;*/
+        }
+
+        .but {
+            width: 35px; 
+            height: 35px;
+            margin: 5px;
+        }
+
+        .choice{
+          margin-left: 10px;
+        }
+
+        #action_area{
+          margin-top: 50px;
+          margin-bottom: 10px;
+        }
+
+        input .choice_box{
+          width: 20px;
+          height: 20px;
+          display: block;
+        }
+
+        .audioButton {
+            position: absolute;
+            right: 10px;
+            margin-top: -0px;
+            margin-right: 30px;
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-image: url('/static/custom/img/giant.png');
+            background-repeat: no-repeat;
+            background-position: 0 -901px;
+        }
+
+        .qaudioButton {
+            right: 10px;
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-image: url('/static/custom/img/giant.png');
+            background-repeat: no-repeat;
+            background-position: 0 -901px;
+        }
+
+        input[type="checkbox"]{
+          width: 30px; /*Desired width*/
+          height: 30px; /*Desired height*/
+        }
+
+        .question{
+          font-size: 16px;
+          margin: 50px;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+        // start_video_for_still();          
+      });
+    </script>
+
+</head>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+<body>
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section" style="padding-top: 10px;">
+        <div class="container mother-frame">
+            <div class="row child-frame">
+                <!-- STAGE I - Enter your exam number -->
+                <div id="authentication_area"  style="display: none;">
+                Authentication Area
+                </div><!-- Authentication area -->
+
+                <!-- STAGE II -->
+                <div id="photograph_area"  style="display: none;">
+                  <div class="head">
+                    <h1>Photo Capture</h1>
+                  </div>
+                  <div id="camera"></div>
+                  <form id="myuploadcapture" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input id="myphotodata" type="hidden" name="myphotodata" value=""/>
+                    <input id="examination_number" type="hidden" name="myId" value=""/>
+                    <div id="pre_take_buttons">
+                      <input type="button" value="Take Snapshot" onClick="preview_snapshot()">
+                    </div>
+                    <div id="post_take_buttons" style="display:none">
+                      <input type="button" value="&lt; Take Another" onClick="cancel_preview()">
+                      <input type="button" value="Save Photo &gt;" onClick="save_photo()" style="font-weight:bold;">
+                    </div>
+                  </form>
+                </div> <!-- photograph_area -->
+
+
+                <div id="exam_area" style="display: inline;">
+                  
+                  <div class="col-lg-4"> <!-- Left Panel -->
+                    <div class="question_label" data-bind='foreach: items'>
+                        <span data-bind='click: setPageIndex, text: ++$parent.counter, if: $parent.pageIndex() == 1' class="btn btn-default but">2</span>
+                    </div>
+                    <div id="video"></div>
+                  </div> <!-- Left Panel -->
+
+                  <div class="col-lg-8"> <!-- Main Panel -->
+
+                    <p class="question">
+                        <strong data-bind='text: items()[pageIndex()]'><span class="qaudioButton"></span></strong>
+                    </p>
+            
+                    <div class="option">
+                      <ul class="option_list">
+                        <li>
+                          <div class="audioButton"></div>
+                          <input class="choice_box" type="checkbox">
+                          <span class="choice">When you are double-parked on a two way road </span>
+                        </li>
+                        <li>
+                          <div class="audioButton"></div>
+                          <input class="choice_box" type="checkbox">
+                          <span class="choice">When you are double-parke</span>
+                        </li>
+                        <li>
+                          <div class="audioButton"></div>
+                          <input class="choice_box" type="checkbox">
+                          <span class="choice">When you are double-parked on a two way road When you are double-park</span>
+                        </li>
+                        <li>
+                          <div class="audioButton"></div>
+                          <input class="choice_box" type="checkbox">
+                          <span class="choice">When you are double-parked on a two way road When you are double-parked</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div id="action_area">
+                        <center>
+                          <button data-bind="css: { disabled: atFirstPage }, click: previousPage" type="button" class="btn large btn-primary active round">Previous</button>
+                          <button data-bind="css: { disabled: atLastPage }, click: nextPage" type="button" class="btn large btn-primary active round">Next</button>
+                        </center>
+                    </div>
+
+                  </div> <!-- Main Panel -->
+                </div> <!-- exam_area -->
+        </div>
+    </section>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/custom/js/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="/static/custom/js/jquery.easing.min.js"></script>
+    <!--<script src="/static/custom/js/scrolling-nav.js"></script> -->
+    <script src="/static/custom/js/webcamjs/webcam.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<!--header-->
+{% include 'core/header.html' %}
+
+<!--aside-->
+{% include 'core/aside.html' %}
+
+<!--contents-->
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>Dashboard <small>Version 2.0</small></h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">View All Un-Used Token</h3>
+                    </div>
+                    <div class="form-horizontal">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <div class="row" style="margin-left: 2%;">
+                                    <div>
+                                        <table class="table table-bordered" rules="all" id="ContentPlaceHolder1_grdMain" style="border-collapse:collapse;" cellspacing="0" border="1">
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="col">Token Code</th>
+                                                    <th scope="col">Token Description</th>
+                                                    <th scope="col">Category Name</th>
+                                                    <th scope="col">Is Used</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                                {% for token in tokens %}
+                                                <tr>
+                                                    <td>{{token.pin_no}}</td>
+                                                    <td>{{ token.description }}</td>
+                                                    <td>{{ token.category.title }}</td>
+                                                    <td>{{ token.used }}</td>
+                                                    <td>
+                                                        <span id="ContentPlaceHolder1_grdMain_lblId_0" style="visibility: hidden;">106</span>
+                                                        <input name="ctl00$ContentPlaceHolder1$grdMain$ctl02$btnDelete" value="Delete" onclick="return confirm('Are You Sure To Delete');" id="ContentPlaceHolder1_grdMain_btnDelete_0" class="btn btn-primary" type="submit">
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <span id="ContentPlaceHolder1_lblMsg" style="color:Red;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+<!--footer-->
+{% include 'core/footer.html' %}
+
+<!--control aside-->
+{% include 'core/c_aside.html' %}
+
+{% endblock %}

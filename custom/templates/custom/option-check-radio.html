@@ -1,0 +1,12 @@
+<ul class="option_list" data-bind='foreach: questions()[pageIndex()].choices'>
+                        <li data-bind="if: $root.questions()[$root.pageIndex()].question_type == 0">
+                          <div class="audioButton"></div>
+                          <input name="choice" class="choice_radio" type="radio" data-bind="attr: {value: id}, checked: selected">
+                          <span class="choice" data-bind='text: description'></span>
+                        </li>
+                        <li data-bind="if: $root.questions()[$root.pageIndex()].question_type == 1">
+                          <div class="audioButton"></div>
+                          <input class="choice_box" type="checkbox" data-bind="attr: {value: id}, checked: selected">
+                          <span class="choice" data-bind='text: description'></span>
+                        </li>
+                      </ul>

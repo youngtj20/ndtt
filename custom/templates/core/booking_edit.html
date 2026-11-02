@@ -1,0 +1,259 @@
+{% extends 'core/base.html' %}
+{% load static widget_tweaks %}
+{% block content %}
+	<style type="text/css">
+		.form-horizontal .control-label {
+			text-align:left;
+		}
+		.btn-file {
+			position: relative;
+			overflow: hidden;
+		}
+		.btn-file input[type=file] {
+			position: absolute;
+			top: 0;
+			right: 0;
+			/*min-width: 100%;*/
+			min-height: 100%;
+			font-size: 100px;
+			text-align: right;
+			filter: alpha(opacity=0);
+			opacity: 0;
+			outline: none;
+			background: white;
+			cursor: inherit;
+			display: block;
+		}
+		
+		#img-upload{
+			width: 100%;
+		}
+	</style>
+<!--header-->
+{% include 'core/header.html' %}
+
+<!--aside-->
+{% include 'core/aside.html' %}
+	<div class="content-wrapper">
+		<section class="content-header">
+			<h1>Edit Booking</h1>
+			<ol class="breadcrumb">
+				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+				<li class="active">Edit Booking</li>
+			</ol>
+		</section>
+		<!-- Main content -->
+		<section class="content">
+			<!-- Info boxes -->
+			<div class="row col-md-12">
+				<div class="box box-info">
+					<div class="box-header with-border">
+						<h3 class="box-title">Editing: {{candidate.first_name }} {{ candidate.last_name }} | {{ candidate.examination_number }} | {{ candidate.exam_venue }}</h3>
+					</div>
+					<div class="box-body">
+						<form method="POST" class="form-horizontal" enctype="multipart/form-data">
+							{% csrf_token %}
+							<div class="content-row">
+								<div class="col-md-12">
+									<div class="box-body">
+										<div class="form-group">
+											<label for="state" class="col-sm-2 control-label">State</label>
+											<div class="col-sm-4">
+												{% render_field form.state class="form-control" %}
+											</div>
+											
+											<label for="exam_venue" class="col-sm-2 control-label">Center</label>
+											<div class="col-sm-4">
+												{% render_field form.exam_venue class="form-control" %}
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label for="exam_preferred_language" class="col-sm-2 control-label">Languagw</label>
+											<div class="col-sm-4">
+												{% render_field form.exam_preferred_language class="form-control" %}
+											</div>
+											
+											<label for="exam_venue" class="col-sm-2 control-label">Preffered Test Date</label>
+											<div class="col-sm-4">
+												{% render_field form.preffered_date class="form-control date" data-date-format="mm/dd/yyyy" data-provide="datepicker" placeholder="Select Preffered test Date" %}
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Title</label>
+											<div class="col-sm-4">
+				                                <select name="title" id="title" class="form-control">
+				                                    <option value="">-- Select Title --</option>
+				                                    <option value="alhaji">Alhaji</option>
+				                                    <option value="barr">Barr</option>
+				                                    <option value="cheif">Cheif</option>
+				                                    <option value="comrade">Comrade</option>
+				                                    <option value="dr">DR</option>
+				                                    <option value="hrh">HRH</option>
+				                                    <option value="mallam">Mallam</option>
+				                                    <option value="miss">Miss</option>
+				                                    <option value="mr">Mr.</option>
+				                                    <option value="mrs">Mrs.</option>
+				                                    <option value="hajiya">Hajiya</option>
+				                                    <option value="jp">JP</option>
+				                                    <option value="pastor">Pastor</option>
+				                                    <option value="sheik">Sheik</option>
+				                                </select>
+				                            </div>
+											<label class="col-sm-2 control-label">Surname</label>
+											<div class="col-sm-4">
+				                                {% render_field form.last_name class="form-control" %}
+				                            </div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Middle Name</label>
+											<div class="col-sm-4">
+												{% render_field form.middle_name class="form-control" %}
+											</div>
+											<label class="col-sm-2 control-label">First Name</label>
+											<div class="col-sm-4">
+												{% render_field form.first_name class="form-control" %}
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-2 control-label">D.O.B</label>
+											<div class="col-sm-4">
+												{% render_field form.date_of_birth class="form-control date" data-date-format="mm/dd/yyyy" data-provide="datepicker" placeholder="Select Date of Birth" %}
+											</div>
+											<label class="col-sm-2 control-label">Gender</label>
+											<div class="col-sm-4">
+												{% render_field form.gender class="form-control" %}
+											</div>
+										</div>
+										                        
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Email Id</label>
+											<div class="col-sm-4">
+												{% render_field form.email_address class="form-control" %}
+											</div>
+											
+											<label class="col-sm-2 control-label">Phone</label>
+											<div class="col-sm-4">
+												{% render_field form.mobile_number class="form-control" %}
+											</div>
+										</div>
+											
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Address</label>
+											<div class="col-sm-4">
+												{% render_field form.address class="form-control" rows="2" %}
+											</div>
+											
+											<label class="col-sm-2 control-label">&nbsp;</label>
+											<div class="col-sm-4">
+												<div class="form-group">
+													<label>Change Image</label>
+													<div class="input-group">
+														<span class="input-group-btn">
+															<span class="btn btn-default btn-file">
+																Browse… <input id="id_photo" type="file" accept="image/png, image/jpeg, image/gif" name="photo"/> <!-- rename it -->
+															</span>
+														</span>
+														<input type="text" class="form-control" readonly>
+													</div>
+													{% if candidate.photo %}
+													<img id='img-upload' src="{{candidate.photo.url}}"/>
+													{% else %}
+													<img id='img-upload'/>
+													{% endif %}
+												</div>
+											</div>
+										</div>
+										<button type="submit" class="btn btn-lg btn-primary pull-right">Update Record</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="box-footer">
+						<!--<span id="ContentPlaceHolder1_lblMsg" style="color:Red;"></span>-->
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- /.content -->
+  	</div>
+	<!--footer-->
+	{% include 'core/footer.html' %}
+
+	<!--control aside-->
+	{% include 'core/c_aside.html' %}
+
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>-->
+
+    <script type="text/javascript">
+    
+    // Ajax autoload states and Centers
+    // initialize an "empty" dropdown
+
+    $(document).ready(function() {
+      $("#id_state").change(function() {
+        var state_id = $(this).val();
+        console.log(state_id);
+        if(state_id != "") {
+          $.ajax({
+            url:`/ap/exam/center/?state=${state_id}`,
+            success:function(response) {
+            //   var resp = $.trim(response.venues);
+              console.log(response.venues);
+              $("#id_exam_venue").html('<option>------- Select --------</option>');
+              $.each(response.venues, function(i, val){
+                  console.log(val.exam_venue);
+                $("#id_exam_venue").append(`<option value=`${val.exam_venue}`>${val.exam_venue}</option>`);       
+              })
+            //   $("#id_exam_venue").html(resp);
+           
+            // console.log(response.venues);
+            }
+          });
+        } else {
+          $("#id_exam_venue").html("<option value=''>------- Select --------</option>");
+        }
+      });
+    });
+</script>
+<script>
+    $(document).ready( function() {
+    	$(document).on('change', '.btn-file :file', function() {
+		var input = $(this),
+			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		input.trigger('fileselect', [label]);
+		});
+
+		$('.btn-file :file').on('fileselect', function(event, label) {
+		    var input = $(this).parents('.input-group').find(':text'),
+		        log = label;
+		    if( input.length ) {
+		        input.val(log);
+		    } else {
+		        if( log ) alert(log);
+		    }
+		});
+		function readURL(input) {
+		    if (input.files && input.files[0]) {
+		        var reader = new FileReader();
+		        reader.onload = function (e) {
+		            $('#img-upload').attr('src', e.target.result);
+		        }
+		        reader.readAsDataURL(input.files[0]);
+		    }
+		}
+		$("#id_photo").change(function(){
+		    readURL(this);
+		}); 	
+	});
+</script>
+
+{% endblock %}

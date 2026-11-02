@@ -1,0 +1,139 @@
+{% extends 'core/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<!--header-->
+{% include 'core/header.html' %}
+
+<!--aside-->
+{% include 'core/aside.html' %}
+
+<!--contents-->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<h1>Create test Center</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">create Center</li>
+			</ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+	  <!-- Info boxes -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="box box-info">
+						<div class="box-header with-border">
+							<h3 class="box-title">Fill Details</h3>
+						</div>
+						<form method='POST'>
+							{% csrf_token %}
+							<div class="form-horizontal">
+								<div class="box-body">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">
+											Center Name</label>
+										<div class="col-sm-5">
+											{% render_field form.exam_venue class="form-control" %}
+											<span style="color:Red;visibility:hidden;">*</span>
+										</div>
+									</div>
+								</div>
+								<div class="box-body">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">
+											Center Code</label>
+										<div class="col-sm-5">
+											{% render_field form.code class="form-control" %}
+											<span style="color:Red;visibility:hidden;">*</span>
+										</div>
+									</div>
+								</div>
+								<div class="box-body">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">
+											Password</label>
+										<div class="col-sm-5">
+											{% render_field form.password class="form-control" %}
+											<span style="color:Red;visibility:hidden;">*</span>
+										</div>
+									</div>
+								</div>
+								<div class="box-body">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">
+											Email</label>
+										<div class="col-sm-5">
+											{% render_field form.email class="form-control" %}
+											<span style="color:Red;visibility:hidden;">*</span>
+										</div>
+									</div>
+								</div>
+								<div class="box-body">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">
+											Phone Number</label>
+										<div class="col-sm-5">
+											{% render_field form.mobile_number class="form-control" %}
+											<span style="color:Red;visibility:hidden;">*</span>
+										</div>
+									</div>
+								</div>
+								<div class="box-body">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">
+											State</label>
+										<div class="col-sm-5">
+											{% render_field form.state class="form-control" %}
+											<span style="color:Red;visibility:hidden;">*</span>
+										</div>
+									</div>
+								</div>
+								<div class="box-body">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">
+											Address</label>
+										<div class="col-sm-5">
+											{% render_field form.address class="form-control" %}
+											<span style="color:Red;visibility:hidden;">*</span>
+										</div>
+									</div>
+								</div>
+								
+								<div class="box-body">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">
+											isActive</label>
+										<div class="col-sm-5">
+											{% render_field form.is_active %}
+											<span style="color:Red;visibility:hidden;">*</span>
+										</div>
+									</div>
+								</div>
+								<!-- /.box-body -->
+								<div class="box-footer">
+									<button type='submit' class="btn btn-info pull-right">create</button>
+									<span id="ContentPlaceHolder1_lblMsg" style="color:Red;"></span>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+	</section>
+	<!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+<!--footer-->
+{% include 'core/footer.html' %}
+
+<!--control aside-->
+{% include 'core/c_aside.html' %}
+
+{% endblock %}

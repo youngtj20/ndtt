@@ -1,0 +1,36 @@
+{% load widget_tweaks %}
+<div class="col-md-6 option" style="float:left;">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Option</h3>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
+                {%for error in form.question.errors %}
+                <small>{{error}}</small>
+                {% endfor %}
+                {% render_field form.question_option class="form-control" placeholder="Enter your questions here" %}
+            </div>
+            <div class="form-group">
+                <label class="label-control">Answer</label>
+                {% render_field form.is_answer %}
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="row form-group">
+                <div class="col-xs-6">
+                    <div class="input-group">
+                        <label>Image</label>
+                        {% render_field form.image class="btn btn-default btn-file"  %}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="input-group">
+                        <label>Audio</label>
+                        {% render_field form.audio class="btn btn-default btn-file"  %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

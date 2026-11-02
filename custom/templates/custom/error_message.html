@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Exam</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/custom/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <!-- <link href="/static/custom/css/scrolling-nav.css" rel="stylesheet"> -->
+
+    <!-- jQuery -->
+    <script src="/static/custom/js/jquery.js"></script>
+    <script src="/static/custom/js/camera.js"></script>
+    <script src="/static/custom/js/knockout-3.4.0.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+
+        body {
+          font-family: tahoma, ariel, sans-serif;
+          letter-spacing: 0.1em;
+          color: #444;
+        }
+
+        .styledRadio, .styledCheckbox {
+          display: inline-block;
+        }
+
+        .mother-frame{
+            background-color: #000000; 
+            border-radius: 10px;
+            /*padding:10px; */
+            min-height: 400px;
+            /*background-image: url('img/vio.png');*/
+        }
+
+        .child-frame {
+            background-color: #fff; 
+            border-radius: 10px;
+            margin: 10px; 
+            margin-top: 10px;
+            padding: 10px;
+            z-index: 300;
+            min-height: 400px;
+        }
+
+        .option ul{
+          list-style: none;
+        }
+
+        .option_list li {
+            background-color: rgb(239, 239, 239); 
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px;
+        }
+
+        .round {
+            /*border-radius: 40px;*/
+            /*margin-right: 20px;*/
+        }
+
+        .but {
+            width: 35px; 
+            height: 35px;
+            margin: 5px;
+        }
+
+        .choice{
+          margin-left: 10px;
+          line-height: 43px;
+          font-size: 14px;
+          /*vertical-align: 14px;*/
+          padding-right: 20px;
+        }
+
+        #action_area{
+          margin-top: 50px;
+          margin-bottom: 10px;
+        }
+
+        .audioButton {
+            position: absolute;
+            right: 10px;
+            /*margin-top: -30px;*/
+            margin-top: 0;
+            margin-right: 30px;
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-image: url('/static/custom/img/giant.png');
+            background-repeat: no-repeat;
+            background-position: 0 -901px;
+        }
+
+        .qaudioButton {
+            right: 40px;
+            position: absolute;
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-image: url('/static/custom/img/giant.png');
+            background-repeat: no-repeat;
+            background-position: 0 -901px;
+        }
+
+        .question{
+          font-size: 16px;
+          margin: 50px;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+    function aftermaths(element){}
+    </script>
+
+</head>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+<body>
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section" style="padding-top: 10px;">
+        <div class="container mother-frame">
+            <div class="row child-frame">
+                <!-- STAGE I - Enter your exam number -->
+               <div class="">{{ message }}</div>
+        </div>
+    </section>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/custom/js/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="/static/custom/js/jquery.easing.min.js"></script>
+    <!--<script src="/static/custom/js/scrolling-nav.js"></script> -->
+    <script src="/static/custom/js/webcamjs/webcam.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Exam</title>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="/static/custom/css/font-awesome.css" rel="stylesheet">
+	<link href="/static/custom/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/custom/css/flipclock.css" rel="stylesheet">
+	<link href="/static/custom/css/awesome-bootstrap-checkbox.css" rel="stylesheet">
+	<link rel="stylesheet" href="/static/core/dist/css/AdminLTE.min.css">
+	<link href="/static/custom/css/TimeCircles.css" rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<!-- <link href="/static/custom/css/scrolling-nav.css" rel="stylesheet"> -->
+
+	<!-- jQuery -->
+	<script src="/static/custom/js/underscore-min.js"></script>
+	<script src="/static/custom/js/jquery.js"></script>
+	<script src="/static/custom/js/camera.js"></script>
+	<script src="/static/custom/js/knockout-3.4.0.js"></script>
+	<script src="/static/custom/js/jquery.countdown.min.js"></script>
+	<script src="/static/custom/js/moment.min.js"></script>
+	<script src="/static/custom/js/TimeCircles.js"></script>
+	<script src="/static/custom/js/driving_test.js?v=2"></script>
+	<script src="/static/custom/js/flipclock.min.js"></script>
+	<script src="/static/custom/js/dist/howler.min.js"></script>
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+				<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+				<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Oswald:400,700,300' rel='stylesheet'
+		type='text/css'>
+	<style type="text/css">
+		/* Import dulu */
+		@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+		body {
+			letter-spacing: 0.1em;
+			color: #444;
+			/*background:#2e2e2e;*/
+			/*background-image: url('/static/custom/images/viobg.jpg');*/
+			background-position: center;
+			background-attachment: fixed;
+			/*Added Recently*/
+			font-family: 'Roboto', sans-serif;
+			font-size: 14px;
+			line-height: 1.5;
+			cursor: default;
+			color: #707070
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-family: 'Oswald', sans-serif;
+			font-weight: normal;
+			margin-bottom: 10px;
+		}
+
+		.styledRadio,
+		.styledCheckbox {
+			display: inline-block;
+		}
+
+		.box-header {
+			padding: 0px;
+			margin: 0px auto;
+			border: none;
+		}
+
+		.header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding-left: 33%;
+		}
+
+		.leftheader{
+			display: flex;
+			align-items: flex-end;
+			font-weight: 700;
+			color: black;
+		}
+
+		.rightheader{
+			display: flex;
+			align-items: flex-end;
+		}
+
+		.mother-frame {
+			/*background-color: #000000; */
+			/*border-radius: 10px;*/
+			/*padding:10px; */
+			min-height: 400px;
+			/*background-image: url('img/vio.png');*/
+		}
+
+		.child-frame {
+			background-color: #fff;
+			border: solid 3px #29a2ff;
+			border-radius: 10px;
+			/* margin: 10px;  */
+			/*margin-top: 10px;*/
+			padding: 10px;
+			z-index: 300;
+			min-height: 400px;
+		}
+
+		.option ul {
+			list-style: none;
+		}
+
+		.option_list li {
+			background-color: rgb(239, 239, 239);
+			padding: 4px;
+			border-radius: 5px;
+			margin: 20px;
+		}
+
+		.but {
+			width: 35px;
+			height: 35px;
+			padding-left: 5px;
+			margin: 5px;
+		}
+
+		.choice {
+			margin-left: 10px;
+			/*line-height: 43px;*/
+			font-size: 14px;
+			/*vertical-align: 25px;*/
+			padding-right: 20px;
+		}
+
+		#action_area {
+			margin-top: 50px;
+			margin-bottom: 10px;
+		}
+
+		.audioButton {
+			position: absolute;
+			right: 10px;
+			/*margin-top: -30px;*/
+			z-index: 500;
+			margin-top: 0;
+			margin-right: 30px;
+			display: block;
+			width: 30px;
+			height: 30px;
+			background-image: url('/static/custom/img/giant.png');
+			background-repeat: no-repeat;
+			background-position: 0 -901px;
+		}
+
+		.qaudioButton {
+			right: 40px;
+			z-index: 500;
+			position: absolute;
+			display: block;
+			width: 30px;
+			height: 30px;
+			background-image: url('/static/custom/img/giant.png');
+			background-repeat: no-repeat;
+			background-position: 0 -901px;
+		}
+
+		.question {
+			font-size: 16px;
+			font-weight: bold;
+			margin: 0px;
+			padding-left: 50px;
+		}
+
+		.question_label {
+			margin-top: 70px;
+		}
+
+		.progress-bar.animate {
+			width: 100%;
+		}
+
+		#countdown {
+			zoom: 0.7;
+			-moz-transform: scale(0.7);
+			transform-origin: right bottom;
+		}
+
+		.navbar {
+			padding-bottom: 18px;
+		}
+
+		.content-wrapper,
+		.right-side,
+		.main-footer {
+			margin-left: 0;
+		}
+
+		li label {
+			width: 100%;
+		}
+
+		.unselected {
+			background: rgb(125, 187, 235) !important;
+			color: #fff !important;
+		}
+
+		.selected {
+			background: #a5cd91 !important;
+			color: #fff !important;
+		}
+
+		.radio label::before{
+			width: 0px;
+			display: none;
+		}
+
+		.checkbox label::before{
+			width: 0px;
+			display: none;
+		}
+
+		input[type="checkbox"]:checked+label,
+		input[type="radio"]:checked+label {
+			background: #29a2ff !important;
+			color: #fff !important;
+		}
+
+		.candidate-detail {
+			margin-top: -55px;
+			margin-left: -24px;
+		}
+
+		.candidate-photo {
+			border-radius: 5px;
+			width: 120px;
+			height: 150px;
+			border-top: 2px solid #29a2ff;
+			border-left: 2px solid #29a2ff;
+			-webkit-box-shadow: 4px 4px 0px 0px rgba(19, 98, 158, 1);
+			-moz-box-shadow: 4px 4px 0px 0px rgba(19, 98, 158, 1);
+			box-shadow: 4px 4px 0px 0px rgba(19, 98, 158, 1);
+		}
+
+		.candidate-name {
+			margin-top: 2px;
+			color: black;
+		}
+	</style>
+
+
+	<script type="text/javascript">
+		function aftermaths(element) { }
+
+		$(document).ready(function () {
+			// start_video_for_video();
+		});
+	</script>
+</head>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+<body>
+	<!-- <div class="navbar navbar-static-top">
+		<center>
+			<h3>{{exam_participant.exam}} Theory Test</h3>
+		</center>
+	</div> -->
+	<!-- Main content -->
+	<div class="header">
+		<div class="leftheader">
+			<h2>{{exam_participant.exam}} Theory Test</h2>
+		</div>
+		<div class="rightheader">
+			<div id="countdown"></div>
+		</div>
+	</div>
+	<div class="row" style="padding: 0px 10px;">
+		
+		<div class="col-md-12">
+			<div class="box-body">
+				<!-- Intro Section -->
+				<section id="intro" class="intro-section">
+					<div class="container-fluid mother-frame">
+						<div class="row child-frame">
+							<div id="exam_area" style="display: inline;">
+								<!-- <div class="col-md-6 col-md-offset-3">
+										<div id="countdown"></div>
+									</div> -->
+								<div class="col-lg-4" data-bind="if: questions().length > 0">
+									<!-- Left Panel -->
+									<div class="candidate-detail">
+										<img class="candidate-photo"
+											src="{% if title.photo %}{{title.photo.url}}{%else %}{{'/static/custom/img/xuser.png'}}{%endif%}"
+											alt="">
+										<h3 class="candidate-name">{{title}}</h3>
+									</div>
+									<div class="question_label" data-bind='foreach: questions'>
+										<span class="btn btn-info but"
+											data-bind="text: ($index() + 1), click: $parent.setPageIndex($index()), css: responseStatus, attr: {id: $parent.questions()[$index()].id}"></span>
+									</div>
+									<div>
+										<center>
+											<span id="video" style="max-width: 240px; max-height: 240px;"></span>
+										</center>
+									</div>
+								</div> <!-- Left Panel -->
+								<div class="col-lg-8" data-bind="if: questions().length > 0">
+									<!-- Main Panel -->
+									<p class="question">
+										<span
+											data-bind="visible: questions()[pageIndex()].audio_url, click: audioQuestionPlay"
+											class="qaudioButton"></span>
+										<span style="font-weight: bolder;"
+											data-bind='text: questions()[pageIndex()].human_readable_question_no'></span>.
+										<span data-bind='html: questions()[pageIndex()].question_description'></span>
+										<div data-bind="if: questions()[pageIndex()].image_url" id="image">
+											<center>
+												<img data-bind="attr: {src: questions()[pageIndex()].image_url}">
+											</center>
+										</div>
+									</p>
+									<div class="option">
+										<form role="form">
+											<ul class="option_list"
+												data-bind="foreach: { data: questions()[pageIndex()].choices, afterRender: aftermaths }">
+												<li class="option-list unselected">
+													<div data-bind="visible: audio_url, click: playAudio"
+														class="audioButton"></div>
+													<div
+														data-bind="css: $root.questions()[$root.pageIndex()].question_type == 0 ? 'radio' : 'checkbox'">
+														<label style="padding-bottom:0px;" data-bind="attr: {for: id} ">
+															<input class="choice_box styledRadio"
+																data-bind="if: $root.questions()[$root.pageIndex()].question_type == 0, attr: {value: id, id: id, type: $root.questions()[$root.pageIndex()].question_type == 0 ? 'radio' : 'checkbox', name:'choice' }, checked: $root.questions()[$root.pageIndex()].selected_choices">
+															<input class="choice_box styledRadio"
+																data-bind="if: $root.questions()[$root.pageIndex()].question_type == 1, attr: {value: id, id: id, type: $root.questions()[$root.pageIndex()].question_type == 0 ? 'radio' : 'checkbox', name:'choice' }, checked: $root.questions()[$root.pageIndex()].selected_choices">
+															<div data-bind="if: image_url" id="optImage">
+																<center>
+																	<img data-bind="attr: {src: image_url}">
+																</center>
+															</div>
+															<span class="choice" data-bind='html: description'></span>
+														</label>
+													</div>
+												</li>
+											</ul>
+											<ul class="option_list"
+												data-bind="visible: questions()[pageIndex()].question_type == 2">
+												<li>
+													<textarea class="form-control" type="text"
+														data-bind="value: questions()[pageIndex()].text_entry" /></textarea>
+												</li>
+											</ul>
+										</form>
+									</div>
+									<div id="action_area">
+										<center>
+											<button data-bind="css: { disabled: atFirstPage }, click: previousPage"
+												type="button"
+												class="btn large btn-primary active round">Previous</button>
+											<button data-bind="css: { disabled: atLastPage }, click: nextPage"
+												type="button" class="btn large btn-primary active round">Next</button>
+											<button data-bind="visible: atLastPage, click: finishTest" type="button"
+												class="btn large btn-success active round">Finish Test</button>
+											<a href="/ap/logout" style="float: right;" data-bind="visible: atLastPage"
+												class="btn medium btn-danger">Logout</a>
+										</center>
+									</div>
+								</div> <!-- Main Panel -->
+								<div class="col-lg-12" data-bind="if: questions().length == 0">
+									<center>
+										<h1>Loading Exam...Please wait</h1>
+									</center>
+								</div>
+							</div> <!-- exam_area -->
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- /.box-body -->
+			<div class="box-footer">
+				<span id="ContentPlaceHolder1_lblMsg" style="color:Red;"></span>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- /.content -->
+
+
+	<div class="modal js-loading-bar">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<center><img src="/static/custom/images/loading2.gif"></center>
+					<center><strong>Marking...Please Wait..</strong></center>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="main-footer">
+		<div class="pull-right hidden-xs">
+			<b>Version</b> 0.1
+		</div>
+
+		<strong>Copyright &copy; 2022 <a href="#">Drivers Testing Resources Ltd.</a></strong>
+	</footer>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/static/custom/js/bootstrap.min.js"></script>
+	<!-- Scrolling Nav JavaScript -->
+	<script src="/static/custom/js/jquery.easing.min.js"></script>
+	<!--<script src="/static/custom/js/scrolling-nav.js"></script> -->
+	<script src="/static/custom/js/webcamjs/webcam.js"></script>
+	<script type="text/javascript">
+		function aftermaths(element) { }
+	</script>
+</body>
+
+</html>

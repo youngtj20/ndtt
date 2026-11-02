@@ -1,0 +1,5 @@
+{% load widget_tweaks %}
+<form method="POST" enctype="multipart/form-data" id="optionform" action="{{path}}">
+{% include 'core/single_option_form.html' %}
+<button type="button" id="addOpt" class="btn btn-primary">Submit</button>
+</form>

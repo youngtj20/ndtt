@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Result Verification</title>
+  <style>
+    :root {
+      --ng-green: #008753;
+      --ng-green-dark: #006c3a;
+      --bg: #ffffff;
+      --bg-soft: #f6faf8;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --danger: #b00020;
+      --danger-soft: #fde8ea;
+      --success-soft: #e8faf1;
+      --card: #ffffff;
+    }
+
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, rgba(0,135,83,.06), rgba(0,135,83,.02));
+      color: var(--text);
+    }
+
+    .page {
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+
+    .wrap { flex: 1 0 auto; }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 16px; }
+    @media (min-width: 480px) { .container { padding: 20px; } }
+
+    .header { text-align: center; padding: 10px 0 4px; }
+    .title {
+      margin: 0; font-size: 22px; font-weight: 800; color: var(--text);
+      letter-spacing: .01em;
+    }
+    .subtitle { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+
+    .status-banner {
+      margin-top: 14px; display: flex; justify-content: center;
+    }
+    .chip { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; letter-spacing: .02em;
+      padding: 10px 14px; border-radius: 999px; font-size: 12px; border: 1px solid transparent; }
+    .chip.valid { color: var(--ng-green-dark); background: var(--success-soft); border-color: #d9f2e3; }
+    .chip.invalid { color: var(--danger); background: var(--danger-soft); border-color: #f6c9cf; }
+
+    /* Cards */
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(0,135,83,.12), 0 4px 12px rgba(16,24,40,.06);
+    }
+    .card + .card { margin-top: 14px; }
+
+    .card-hd { padding: 14px 16px; border-bottom: 1px solid var(--border); display:flex; align-items:center; gap:10px; }
+    .card-hd h3 { margin: 0; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; color: var(--ng-green-dark); }
+    .card-bd { padding: 16px; }
+
+    .row { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    @media (min-width: 520px) { .row.cols-2 { grid-template-columns: 1fr 1fr; } }
+
+    .item { display:flex; justify-content: space-between; gap: 10px; padding: 10px 0; border-bottom: 1px dashed #e8ecea; }
+    .item:last-child { border-bottom: none; }
+    .key { color: var(--muted); font-size: 12px; }
+    .val { color: var(--text); font-weight: 700; }
+
+    /* Score card */
+    .score-wrap { display:flex; align-items:center; gap: 16px; }
+    .ring {
+      --size: 96px; --thickness: 10px;
+      width: var(--size); height: var(--size); border-radius: 50%;
+      background: conic-gradient(var(--ng-green) calc(var(--p,0) * 1%), #e8ecea 0);
+      position: relative;
+    }
+    .ring::after {
+      content: ''; position: absolute; inset: var(--thickness);
+      background: #fff; border-radius: 50%;
+    }
+    .ring .pct {
+      position: absolute; inset: 0; display:flex; align-items:center; justify-content:center;
+      font-weight: 800; color: var(--ng-green-dark);
+    }
+    .verdict { display:inline-flex; align-items:center; gap: 8px; font-weight:800; letter-spacing:.02em; padding: 8px 12px; border-radius: 999px; }
+    .verdict.pass { color: var(--ng-green-dark); background: var(--success-soft); border:1px solid #d9f2e3; }
+    .verdict.fail { color: var(--danger); background: var(--danger-soft); border:1px solid #f6c9cf; }
+
+    .note { margin-top: 8px; color: var(--muted); font-size: 12px; }
+
+    /* Footer */
+    .footer { flex: 0 0 auto; padding: 14px 0 24px; text-align: center; color: var(--muted); font-size: 12px; }
+
+    /* Utility */
+    .center { text-align: center; }
+    .muted { color: var(--muted); }
+    .sp { height: 10px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="wrap">
+      <div class="container">
+        <header class="header">
+          <h1 class="title">Result Verification</h1>
+          <p class="subtitle">This page confirms the authenticity of the result</p>
+          <div class="status-banner">
+            <span class="chip {{ status }}">{% if status == 'valid' %}
+              <!-- check icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 7L9 18L4 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              VERIFIED
+            {% else %}
+              <!-- x icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              INVALID
+            {% endif %}</span>
+          </div>
+          <div class="sp"></div>
+          <div class="center muted">{{ message }}</div>
+        </header>
+
+        {% if status == 'valid' %}
+        <!-- Candidate Card -->
+        <section class="card">
+          <div class="card-hd"><h3>Candidate</h3></div>
+          <div class="card-bd">
+            <div class="row">
+              <div class="item"><span class="key">Name</span><span class="val">{{ candidate.first_name }} {% if candidate.middle_name %}{{ candidate.middle_name }}{% endif %} {{ candidate.last_name }}</span></div>
+              <div class="item"><span class="key">Examination No</span><span class="val">{{ candidate.examination_number }}</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Exam Card -->
+        <section class="card">
+          <div class="card-hd"><h3>Exam Information</h3></div>
+          <div class="card-bd">
+            <div class="row">
+              <div class="item"><span class="key">Exam</span><span class="val">{{ exam.exam }}</span></div>
+              <div class="item"><span class="key">Venue</span><span class="val">{{ exam_venue.exam_venue }}</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Score Card -->
+        <section class="card">
+          <div class="card-hd"><h3>Score & Verdict</h3></div>
+          <div class="card-bd">
+            <div class="score-wrap">
+              <div class="ring" style="--p: {{ score_in_percent }};">
+                <div class="pct">{{ score_in_percent }}%</div>
+              </div>
+              <div>
+                <div class="verdict {% if verdict|lower == 'pass' %}pass{% else %}fail{% endif %}">
+                  {% if verdict|lower == 'pass' %}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 7L9 18L4 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  {% else %}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  {% endif %}
+                  {{ verdict|upper }}
+                </div>
+                <div class="note">This score is computed from the official records.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Authenticity Note -->
+        <section class="card">
+          <div class="card-bd">
+            <div class="center muted">Keep this page for your records. The QR code links here for authenticity verification.</div>
+          </div>
+        </section>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">&copy; <span id="yr"></span> Result Verification</div>
+    </footer>
+  </div>
+
+  <script>
+    // Set year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

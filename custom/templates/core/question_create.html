@@ -1,0 +1,182 @@
+{% extends 'core/base.html' %}
+{% load widget_tweaks %}
+
+{% block extra_css %} 
+
+    <!-- Include Editor style. -->
+    
+{% endblock %}
+
+{% block content %}
+<!--header-->
+{% include 'core/header.html' %}
+
+<!--aside-->
+{% include 'core/aside.html' %}
+
+<style type="text/css">
+    .form-horizontal .control-label {
+        text-align:left;
+    }
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        /*min-width: 100%;*/
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+    
+    #img-upload{
+        width: 100%;
+    }
+</style>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>Add Question</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Add Question</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+                        
+            <!-- Info boxes -->
+            <div class="row">
+                <form method="POST" enctype="multipart/form-data" class="dropzone" id="dropzone">
+                    {% csrf_token %}
+                        <div class="col-md-12">
+                            <div class="box box-info">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Add Question</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="col-md-4 form-group">
+                                        <label>Exam category</label>
+                                        {%for error in form.category.errors %}
+                                        <small>{{error}}</small>
+                                        {% endfor %}
+                                        {% render_field form.category class="form-control" %}
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label>Question Type</label>
+                                        {%for error in form.question_type.errors %}
+                                        <small>{{error}}</small>
+                                        {% endfor %}
+                                        {% render_field form.question_type class="form-control" %}
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label>Number of Options</label>
+                                        <span class="hidden"> {% render_field form.language class="form-control" %} </span>
+                                        <select class="form-control" id="optionNumber"  name="optionNumber">
+                                            <option value="2" selected="selected">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label>Question Text</label>
+                                        {%for error in form.question.errors %}
+                                        <small>{{error}}</small>
+                                        {% endfor %}
+                                        {% render_field form.question class="form-control" placeholder="Enter your questions here" %}
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <div class="row form-group">
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <label>Image</label>
+                                                {% render_field form.image class="btn btn-default btn-file"  %}
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <labek>Audio</labek>
+                                                {% render_field form.audio class="btn btn-default btn-file"  %}
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- What ever you do, do not remove the line below, it is under the protection of Ahmadore -->
+                        {{ formset.management_form }}
+                        <!-- What ever you do, do not remove the line above, it is under the protection of Ahmadore -->
+
+                        <div id = "option_container">
+                            {% include 'core/option_form_set.html' %}
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary pull-right">create</button>
+                        </div>
+                    </form>
+              </div>
+            </section>
+      </div>
+
+<!--footer-->
+{% include 'core/footer.html' %}
+
+<!--control aside-->
+{% include 'core/c_aside.html' %}
+
+{% endblock %}
+
+{% block extra_js %}
+    <!-- Dropzone.js -->
+    <!--<script src="/static/core/plugins/dropzone.js"></script>-->
+    <!-- Include Editor JS files. -->
+    <script src="/static/core/plugins/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script>
+        /* global $ */
+        function initTinyMice() {
+             /* global tinymce */
+            tinymce.init({ 
+                selector:'textarea',
+                browser_spellcheck: true,
+                plugins: [
+                  'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+                  'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                  'save table contextmenu directionality emoticons template paste textcolor'
+                ],
+            });
+        }
+        
+        $('#optionNumber').on('change', function() {
+          populateOptions(this.value);
+          initTinyMice();
+        });
+    
+        function populateOptions(number) {
+            $.getJSON("/ap/question/option/form/" + number, function(data){
+                $("#option_container").html(data['optionform']);
+            });
+        }
+        $(document).ready( function() {
+            initTinyMice();
+            var optionNumber = $("#id_form-TOTAL_FORMS").attr('value');
+            $("#optionNumber").val(optionNumber);
+    	});
+    </script>
+    
+{% endblock %}

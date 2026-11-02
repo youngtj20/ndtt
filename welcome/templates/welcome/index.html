@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Driving Certifications Test Portal</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="./static/welcome/assets/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+	<link rel="stylesheet" href="./static/welcome/assets/css/owl.carousel.css"/>
+	<link rel="stylesheet" href="./static/welcome/assets/css/magnific-popup.css"/>
+	<link rel="stylesheet" href="./static/welcome/assets/css/animate.min.css"/>
+	<link rel="stylesheet" href="./static/welcome/assets/css/style.css"/>
+
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+	<!-- Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!--====== Top Section Start ======-->
+	<div class="top-element">
+		<div class="container">
+			<!-- Navigation Switch -->	
+			<div class="nav-switch">
+				<span class="bar-one"></span>
+				<span class="bar-two"></span>
+				<span class="bar-three"></span>
+			</div>
+			<!-- Navigation Menu -->
+			<nav class="mainmenu">
+				<ul class="menu-list">
+					{% if request.get_host == '127.0.0.1:8000' %}
+					<li><a href="/synchro/confirm/center/?destination=remote">Upload Records</a></li>
+					<li><a href="/synchro/confirm/center/?destination=local">Download Records</a></li>
+					{% else %}
+					<li><a href="/ap/candidate_verification?type=exam">Take Test</a></li>
+					<li><a href="/ap/candidate_verification?type=practice">Practice Test</a></li>
+					{% endif %}
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!--====== Top Section End ======-->
+
+	<!--====== Intro Section Start ======-->
+	<section class="intro-section" id="booking">
+		<div class="intro-bg bg-style" style="background-image: url('/static/welcome/assets/img/bg.jpg');"></div>
+		<div id="particles" style="z-index: 1;"></div>
+		<div class="intro-inner">
+			<div class="intro-content mt60" style="z-index: 99999;">
+				<h1>Drivers Theory Test</h1>
+				<!--<h2><span class="rotate"> Make Booking, Take Test.</span></h2>-->
+				<a href="/ap/candidate_verification?type=exam" class="site-btn btn-primary mt160 mr20" data-wow-delay="0.2s">Take Test</a>
+				<a href="/ap/select/category/" class="site-btn btn-primary mt160 ml20" data-wow-delay="0.2s">Book Test</a>
+			</div>
+		</div>
+	</section>
+	<!--====== Intro Section End ======-->
+	
+	<footer class="footer-section">
+		<div class="container pt20 pb20">
+			<p>Copyright &copy; 2021 | Drivers Testing Resources Limited.</p>
+		</div>
+	</footer>
+
+	<!--====== Javascripts & Jquery ======-->	
+	<script src="./static/welcome/js/jquery-2.1.4.min.js"></script>
+	<script src="./static/welcome/js/jquery.parallax.js"></script>
+	<script src="./static/welcome/js/jquery.simple-text-rotator.min.js"></script>
+	<script src="./static/welcome/js/isotope.pkgd.min.js"></script>
+	<script src="./static/welcome/js/owl.carousel.min.js"></script>
+	<script src="./static/welcome/js/magnific-popup.min.js"></script>
+	<script src="./static/welcome/js/jquery.scrollUp.js"></script>
+	<script src="./static/welcome/assets/js/wow.min.js"></script>
+	<script src="./static/welcome/js/particles.min.js"></script>
+	<script src="./static/welcome/js/init-particles.js"></script>
+	<script src="./static/welcome/js/main.js"></script>
+</body>
+</html>

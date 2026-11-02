@@ -1,0 +1,84 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<!--header-->
+{% include 'core/header.html' %}
+
+<!--aside-->
+{% include 'core/aside.html' %}
+
+<!--contents-->
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Center Master
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Create Center</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">
+                                    Fill Details</h3>
+                    </div>
+                    
+                    <div class="box-body">
+                        <div>
+                            <table class="table table-bordered" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_grdMain" style="border-collapse:collapse;">
+                                <tr>
+                                    <th scope="col">Center Name</th>
+                                    <th scope="col">Center Code</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Phone No</th>
+                                    <th scope="col">EmailId</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                                
+                                {% for venue in venues %}
+                                <tr>
+                                    <td>{{ venue.exam_venue }}</td>
+                                    <td>{{ venue.code }}</td>
+                                    <td>{{ venue.address }}</td>
+                                    <td>{{ venue.mobile_number }}</td>
+                                    <td>{{ venue.email }}</td>
+                                    <td>
+                                        <a class="fa fa-edit" href="#"></a>&nbsp;&nbsp;&nbsp;
+                                        <span id="ContentPlaceHolder1_grdMain_lblId_4" style="visibility: hidden;">3</span>
+                                        <input type="submit" value="Delete" class="btn btn-primary" />
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <span id="ContentPlaceHolder1_lblMsg" style="color:Red;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+<!--footer-->
+{% include 'core/footer.html' %}
+
+<!--control aside-->
+{% include 'core/c_aside.html' %}
+
+{% endblock %}

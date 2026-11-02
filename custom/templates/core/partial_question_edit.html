@@ -1,0 +1,49 @@
+{% load widget_tweaks %}
+    
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Edit Question</h3>
+            </div>
+            <div class="box-body">
+                <div class="col-md-4 form-group">
+                    <label>Exam category</label>
+                    {%for error in form.category.errors %}
+                    <small>{{error}}</small>
+                    {% endfor %}
+                    {% render_field form.category class="form-control" %}
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>Question Type</label>
+                    {%for error in form.question_type.errors %}
+                    <small>{{error}}</small>
+                    {% endfor %}
+                    {% render_field form.question_type class="form-control" %}
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="form-group">
+                    {%for error in form.question.errors %}
+                    <small>{{error}}</small>
+                    {% endfor %}
+                    {% render_field form.question class="form-control" placeholder="Enter your questions here" %}
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row form-group">
+                <div class="col-xs-6">
+                    <div class="input-group">
+                        <label>Image</label>
+                        {% render_field form.image class="btn btn-default btn-file"  %}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="input-group">
+                        <label>Audio</label>
+                        {% render_field form.audio class="btn btn-default btn-file"  %}
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>

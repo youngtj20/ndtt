@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Exam</title>
+    {% load static %}
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/static/core/assets/css/bootstrap.min.css"/>
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+  	<link rel="stylesheet" href="/static/core/assets/css/owl.carousel.css"/>
+  	<link rel="stylesheet" href="/static/core/assets/css/magnific-popup.css"/>
+  	<link rel="stylesheet" href="/static/core/assets/css/animate.min.css"/>
+  	<link rel="stylesheet" href="/static/core/assets/css/style.css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <style type="text/css">
+      .contact-butn {
+          width: 40%;
+      }
+      .contact-butn {
+        background: #333;
+        color: #fff;
+        border: none;
+        padding: 17px 30px;
+        border-radius: 70px;
+        box-shadow: 0px 11px 30px transparent;
+        outline: none;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        -webkit-transition: all 0.4s ease 0s;
+        transition: all 0.4s ease 0s;
+      }
+      
+      .contact-butn:hover {
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
+      }
+      .contact-info li {
+          margin-bottom: 5px;
+          padding: 5px 15px;
+      }
+    </style>
+</head>
+<body>
+<!--====== Top Section Start ======-->
+	<div class="top-element">
+		<div class="container">
+			<!-- Navigation Menu -->
+			<nav class="mainmenu">
+				<ul class="menu-list">
+					<li><a href="/">Home</a></li>
+					<li><a href="/ap/select/category/">Booking</a></li>
+					<li><a href="/ap/candidate_verification">Take Test</a></li>
+				</ul>
+			</nav>
+			<!-- Top Social Links -->
+			<div class="social">
+				<a href="/">Home <span class="sr-only">(current)</span></a> &nbsp;
+				<a href="/ap/select/category/">Booking</a>
+			</div>
+		</div>
+	</div>
+    
+    <!--====== Contact Section Start ======-->
+    <section class="contact-section spad">
+        <div class="container pt100 pb100">
+            <div class="section-title mb60">
+                <h2  style="margin-bottom:30px;">Driver Test Theory</h2>
+                <h3>Payment Details</h3>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6" style="margin: 0 30% 0 25%;">
+                    <form class="contact-form" id="paymentForm" method="POST" action='/ap/make_payment/'>
+                        {% csrf_token %}
+                        <!--<label>Scratch Card Number:</label>-->
+                        <input type="text" id="mobile_number" name="mobile_number" class="form-control card-phone" placeholder="Enter a valid phone number"/>
+                        <div class="card-verification">
+                            <p>AMOUNT: <strong>{{ category.fees }}</strong></p>
+                            <p>CATEGORY: <strong>{{ category.title }}</p></strong>
+                        </div>
+                        <input type="hidden" id="amount" name="amount" value={{ category.fees }} />
+                        <input type="hidden" id="customer" value="payment@ndtt.ng" />
+                        <input type="hidden" id="publicKey" value="pk_S8iHQQf8rVgR9yqv" />
+                        <div class="text-center">
+                            <button type="submit" class="contact-butn wow fadeInUp" data-wow-delay="0.2s">Make Payment</button>
+                            <button type="submit" class="contact-butn wow fadeInUp" onclick="window.history.go(-1); return false;" data-wow-delay="0.2s">Cancel Payment</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== Contact Section End ======-->
+
+
+    <footer class="footer-section">
+  		<div class="container pt20 pb20">
+  			<p style="color:#fff;">Copyright &copy; 2017 <a href="https://logicaladdress.com">LogicalAddress Ltd.</a></p>
+  		</div>
+  	</footer>
+    <!--====== Javascripts & Jquery ======-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://pie.ng/js"></script>
+    <script type="text/javascript" src="{% static 'custom/js/payment.js' %}"></script>
+	
+	<!--<script src="/static/core/bootstrap/js/jquery-2.1.4.min.js"></script>-->
+	<script src="/static/core/bootstrap/js/jquery.parallax.js"></script>
+	<script src="/static/core/bootstrap/js/jquery.simple-text-rotator.min.js"></script>
+	<script src="/static/core/bootstrap/js/isotope.pkgd.min.js"></script>
+	<script src="/static/core/bootstrap/js/owl.carousel.min.js"></script>
+	<script src="/static/core/bootstrap/js/magnific-popup.min.js"></script>
+	<script src="/static/core/bootstrap/js/jquery.scrollUp.js"></script>
+	<script src="/static/core/bootstrap/js/wow.min.js"></script>
+	<script src="/static/core/bootstrap/js/particles.min.js"></script>
+	<script src="/static/core/bootstrap/js/init-particles.js"></script>
+	<script src="/static/core/bootstrap/js/js/main.js"></script>
+
+</body>
+
+</html>

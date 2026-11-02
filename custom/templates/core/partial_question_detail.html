@@ -1,0 +1,36 @@
+{% load static %}
+<div class="box box-solid">
+    <div class="box-header with-border">
+        <i class="fa fa-text-width"></i>
+
+        <h3 class="box-title">Question Detail</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <blockquote>
+            {{ question.question }}
+            <small>Category- {{ question.category }} <br>
+            Type <cite title="Source Title"> {{ question.question_type }}</cite></small>
+        </blockquote>
+        <div class="row">
+            <div class="col-md-6">
+            {% if question.image %}
+                <div class="media-right">
+                <img src="{{ question.image.url }}" alt="Material Dashboard Pro" class="media-object" style="width: 150px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
+            </div>
+            {% else %}
+                No Image
+            {% endif %}
+            </div>
+            <div class="col-md-6">
+            {% if question.audio %}
+                {{ question.audio.name }}
+            {% else %}
+                No Audio
+            {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->

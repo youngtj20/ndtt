@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://kendo.cdn.telerik.com"> -->
+	<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+	<title>Booking Certificate</title>
+</head>
+
+<body>
+	
+	<div class="wrapper">
+		<img style="display:none" src="/static/custom/images/cert/ndtt-template.png" />
+		<button onclick="ExportPdf()">Download</button>
+		<a href="/ap/logout">Logout</a>
+		<canvas id="canvas"></canvas>
+	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2017.2.621/js/kendo.all.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+	<script type="text/javascript">
+	/* global $ */
+	$(document).ready(function(e) {
+		var canvas = document.getElementById('canvas'),
+	        ctx = canvas.getContext('2d');
+		canvas.width = $('img').width();
+		canvas.crossOrigin = "Anonymous";
+		canvas.height = $('img').height();
+		ctx.drawImage($('img').get(0), 0, 0);
+		ctx.font = "23pt Arial";
+		
+	    //redraw image
+	    ctx.clearRect(0,0,canvas.width,canvas.height);
+	    ctx.drawImage($('img').get(0), 0, 0);
+	    
+	    //refill text
+	    ctx.fillStyle = "black";
+		var middle_name = "{{candidate.middle_name}}";
+		console.log(middle_name);
+		var display_middle_name = middle_name === 'None' ? '' : middle_name;
+		console.log(display_middle_name);
+	    ctx.fillText('{{candidate.first_name}} ' + display_middle_name + ' {{candidate.last_name}}', 400, 400);
+	    
+	    ctx.fillText('{{candidate.date_of_birth}}', 340, 540);
+	    
+	    ctx.fillText('{{candidate_gender}}', 340, 610);
+	    
+	    ctx.fillText('{{exam.exam}}', 340, 688);
+	    ctx.fillText('{{exam.updated_at}}', 340, 760);
+	    ctx.fillText('{{exam_venue.exam_venue}}', 610, 833);
+	    
+	    ctx.fillText('{{score_in_percent}}%', 500, 1009);
+	    
+	    ctx.fillText('{{candidate.examination_number}}', 500, 1086);
+	    
+	    ctx.fillText('OGCVIS' + '{{candidate.examination_number}}', 500, 1166);
+
+	    // Generate QR code for verification URL and draw it onto the canvas at bottom-right
+	    var verifyUrl = "{{ verify_url|default:'' }}";
+	    if (verifyUrl) {
+	      // Create an off-DOM QR element
+	      var qrContainer = document.createElement('div');
+	      var qr = new QRCode(qrContainer, { text: verifyUrl, width: 180, height: 180, correctLevel: QRCode.CorrectLevel.M });
+	      // Give it a moment to render, then draw onto canvas
+	      setTimeout(function() {
+	        try {
+	          var img = qrContainer.getElementsByTagName('img')[0];
+	          if (img && img.complete) {
+	            var x = canvas.width - 220; // padding from right
+	            var y = canvas.height - 220; // padding from bottom
+	            ctx.drawImage(img, x, y, 180, 180);
+	            // Optional label below QR
+	            ctx.font = "12pt Arial";
+	            ctx.fillText('Scan to verify', x, y + 195);
+	          } else {
+	            // Fallback if QR renders as canvas
+	            var cvs = qrContainer.getElementsByTagName('canvas')[0];
+	            if (cvs) {
+	              var x2 = canvas.width - 220;
+	              var y2 = canvas.height - 220;
+	              ctx.drawImage(cvs, x2, y2, 180, 180);
+	              ctx.font = "12pt Arial";
+	              ctx.fillText('Scan to verify', x2, y2 + 195);
+	            }
+	          }
+	        } catch (e) { console.log('QR draw error', e); }
+	      }, 200);
+	    }
+	    
+	});
+	function ExportPdf(){ 
+	kendo.drawing
+	    .drawDOM("#canvas", 
+	    {
+	        paperSize: "A4",
+	        scale: .5
+	    })
+	        .then(function(group){
+	        kendo.drawing.pdf.saveAs(group, "{{candidate.first_name}}{{candidate.last_name}}.pdf")
+	    });
+	}
+</script>
+<script type="text/javascript">
+	$(window).unload(function () {
+	   $.ajax({
+	     type: 'GET',
+	     async: false,
+	     url: '/ap/logout/'
+	   });
+	});
+</script>
+</body>
+
+</html>

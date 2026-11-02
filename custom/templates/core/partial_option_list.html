@@ -1,0 +1,65 @@
+{% load widget_tweaks %}
+<div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+          <div class="box-header with-border">
+            <h3 class="box-title">Question Options</h3>
+          </div>
+          <div class="form-horizontal">
+              <div class="box-body">
+                  <div class="form-group">
+                      <div class="row" style="margin-left: 2%;">
+                          <div>
+                              <table class="table table-bordered" rules="all" id="ContentPlaceHolder1_grdMain" style="border-collapse:collapse;" cellspacing="0" border="1">
+                                  <thead>
+                                    <tr>
+                                        <th scope="col">Option Text</th>
+                                        <th scope="col">is Answer (&#x20A6;)</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Audio</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                      {% for option in options %}
+                                      <tr id="{{option.id}}">
+                                          <td>
+                                              {{ option.question_option }}
+                                          </td>
+                                          <td>
+                                              {{ option.is_answer }}
+                                          </td>
+                                          <td>
+                                            {% if option.image %}
+                                            {{ option.image.name }}
+                                            {% else %}
+                                            No Image for this option
+                                            {% endif %}
+                                          </td>
+                                          <td>
+                                            {% if option.audio %}
+                                            {{ option.audio.name }}
+                                            {% else %}
+                                            No Audio for this option
+                                            {% endif %}
+                                          </td>
+                                          <td>
+                                              <button type="button" class="btn btn-primary" name="edit" id="action">Edit</button>
+                                              <button type="button" class="btn btn-primary" name="delete" id="action">Delete</button>
+                                          </td>
+                                      </tr>
+                                      {% endfor %}
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                  <span id="foot" style="color:Red;"><button type="button" class="btn btn-primary" name="add" id="action">Add Option</button></span>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>

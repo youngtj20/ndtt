@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Driver Theory Test - Booking Verification">
+  <title>Booking Verification</title>
+
+  <link rel="stylesheet" href="/static/core/assets/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+  <link rel="stylesheet" href="/static/core/assets/css/animate.min.css"/>
+  <link rel="stylesheet" href="/static/core/assets/css/style.css"/>
+
+  <style>
+    :root {
+      --ng-green: #008753;
+      --ng-green-dark: #006c3a;
+      --bg: #ffffff;
+      --bg-soft: #f6faf8;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --card: #ffffff;
+    }
+
+    body { background: linear-gradient(180deg, rgba(0,135,83,.06), rgba(0,135,83,.02)); color: var(--text); }
+
+    .top-element { background: #fff; border-bottom: 1px solid var(--border); }
+
+    .container-narrow { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+    /* Hero */
+    .hero { text-align: center; padding: 36px 0 8px; }
+    .hero .title { margin: 0; font-weight: 800; font-size: 28px; letter-spacing: .01em; }
+    .hero .subtitle { margin: 6px 0 0; color: var(--muted); }
+
+    /* Card */
+    .card { background: var(--card); border: 1px solid #dfeee6; border-radius: 16px; box-shadow: 0 16px 40px rgba(0,135,83,.12), 0 4px 12px rgba(16,24,40,.06); }
+    .card .hd { padding: 18px 20px; border-bottom: 1px solid var(--border); display:flex; align-items:center; gap:10px; }
+    .card .hd h3 { margin:0; font-size: 18px; font-weight:800; color: var(--ng-green-dark); }
+    .card .bd { padding: 20px; }
+
+    /* Messages */
+    .messages { list-style: none; padding-left: 0; margin: 0 0 10px; }
+    .messages li { margin-bottom: 8px; }
+    .alert { border-radius: 12px; border: 1px solid var(--border); padding: 10px 12px; font-size: 14px; }
+    .alert-success { color: #065f46; background: #ecfdf5; border-color: #a7f3d0; }
+    .alert-warning { color: #92400e; background: #fffbeb; border-color: #fde68a; }
+    .alert-error, .alert-danger { color: #991b1b; background: #fef2f2; border-color: #fecaca; }
+    .alert-info { color: #1e40af; background: #eff6ff; border-color: #bfdbfe; }
+
+    /* Form */
+    .form-label { display:block; font-size: 12px; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
+    .form-control { border: 1px solid var(--border); border-radius: 12px; padding: 12px 12px; height: auto; box-shadow: none; }
+    .form-control:focus { border-color: var(--ng-green); box-shadow: 0 0 0 3px rgba(0,135,83,.12); }
+
+    .input-group-text { background: #fff; border: 1px solid var(--border); border-right: none; border-radius: 12px 0 0 12px; color:#334155; }
+    .input-group .form-control { border-left: none; border-radius: 0 12px 12px 0; }
+    .hint { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+    .btn-row { display:flex; gap:12px; justify-content:center; flex-wrap: wrap; }
+    .btn-primary-ng { background: var(--ng-green); color:#fff; border:none; border-radius: 999px; padding: 12px 22px; font-weight: 800; letter-spacing:.02em; min-width: 180px; box-shadow: 0 10px 22px rgba(0,135,83,.18); }
+    .btn-primary-ng:hover { background: var(--ng-green-dark); }
+
+    .btn-outline-ng { background: #fff; color: var(--ng-green); border:1px solid var(--ng-green); border-radius: 999px; padding: 12px 22px; font-weight: 800; letter-spacing:.02em; min-width: 160px; }
+    .btn-outline-ng:hover { background: #eefaf4; }
+    .btn-primary-ng[disabled], .btn-outline-ng[disabled] { opacity: .6; cursor: not-allowed; box-shadow: none; filter: grayscale(0.1); }
+
+    .footer { text-align:center; padding: 18px 0 28px; color: var(--muted); font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="top-element">
+    <div class="container">
+      <nav class="mainmenu">
+        <ul class="menu-list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/ap/select/category/">Booking</a></li>
+          <li><a href="/ap/candidate_verification">Take Test</a></li>
+        </ul>
+      </nav>
+      <div class="social">
+        <a href="/">Home <span class="sr-only">(current)</span></a> &nbsp;
+        <a href="/ap/select/category/">Booking</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="container-narrow">
+      <h1 class="title">Driver Theory Test</h1>
+      <p class="subtitle">Booking Authentication</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container-narrow">
+      <div class="card">
+        <div class="hd"><h3>Enter PIN Number</h3></div>
+        <div class="bd">
+
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+              <li><div class="alert alert-{{ message.level_tag }}">{{ message }}</div></li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          <form class="contact-form" action="/ap/verify_bookings" id="authentication" method="POST" novalidate>
+            {% csrf_token %}
+            <label for="verify_id" class="form-label">PIN Number</label>
+            <div class="input-group" style="margin-bottom: 8px;">
+              <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-key"></i></span></div>
+              <input id="verify_id" type="text" class="form-control" name="pin_number" placeholder="Enter PIN Number" required />
+            </div>
+            <div class="hint">Enter your scratch card PIN to proceed with your booking.</div>
+
+            <div class="btn-row" style="margin-top: 16px;">
+              <button type="submit" class="btn-primary-ng" name="voucher"><i class="fa fa-check"></i> Start Booking</button>
+              <button type="button" class="btn-outline-ng" disabled title="Online payment is temporarily unavailable"><i class="fa fa-credit-card"></i> Pay Online</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container-narrow">&copy; <span id="yr"></span> Booking Verification</div>
+  </footer>
+
+  <script>
+    var yrEl = document.getElementById('yr');
+    if (yrEl) yrEl.textContent = new Date().getFullYear();
+  </script>
+
+  <script src="/static/core/bootstrap/js/jquery-2.1.4.min.js"></script>
+  <script src="/static/core/bootstrap/js/jquery.parallax.js"></script>
+  <script src="/static/core/bootstrap/js/jquery.simple-text-rotator.min.js"></script>
+  <script src="/static/core/bootstrap/js/isotope.pkgd.min.js"></script>
+  <script src="/static/core/bootstrap/js/owl.carousel.min.js"></script>
+  <script src="/static/core/bootstrap/js/magnific-popup.min.js"></script>
+  <script src="/static/core/bootstrap/js/jquery.scrollUp.js"></script>
+  <script src="/static/core/bootstrap/js/wow.min.js"></script>
+  <script src="/static/core/bootstrap/js/particles.min.js"></script>
+  <script src="/static/core/bootstrap/js/init-particles.js"></script>
+  <script src="/static/core/bootstrap/js/js/main.js"></script>
+</body>
+</html>

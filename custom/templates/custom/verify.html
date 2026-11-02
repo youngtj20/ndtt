@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ogun State Driver Theory Test - Candidate Authentication">
+  <meta name="author" content="">
+  <title>Candidate Authentication | Ogun State</title>
+  {% load static %}
+  <link rel="stylesheet" href="/static/core/assets/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+  <link rel="stylesheet" href="/static/core/assets/css/animate.min.css"/>
+  <link rel="stylesheet" href="/static/core/assets/css/style.css"/>
+
+  <style>
+    :root {
+      --ogun-green: #008753;
+      --ogun-green-dark: #006c3a;
+      --ogun-bg: #ffffff;
+      --ogun-text: #0f172a;
+      --ogun-muted: #64748b;
+      --border: #e5e7eb;
+      --card: #ffffff;
+      --danger: #b00020;
+    }
+
+    html, body { height: 100%; }
+    body {
+      background: var(--ogun-bg);
+      color: var(--ogun-text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .hero {
+      flex: 0 0 auto;
+      background: linear-gradient(180deg, rgba(0,135,83,.08), rgba(0,135,83,.03));
+      border-bottom: 1px solid var(--border);
+    }
+    .hero .wrap { padding: 36px 0 16px; text-align: center; }
+    .ogun-badge { display:inline-flex; gap:10px; align-items:center; background:#eaf7ef; border:1px solid #d2ecd8; color:var(--ogun-green-dark); font-weight:800; text-transform:uppercase; letter-spacing:.04em; padding:8px 14px; border-radius:999px; font-size:12px; }
+    .page-title { margin:12px 0 4px; font-size:28px; color:var(--ogun-text); font-weight:800; }
+    .page-sub { margin:0; color:var(--ogun-muted); }
+
+    .auth-wrap {
+      flex: 1 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 0 36px;
+    }
+
+    .footer-section { flex: 0 0 auto; }
+
+    .auth-card {
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid #dfeee6;
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(0,135,83,.12), 0 4px 12px rgba(16,24,40,.06);
+    }
+    .auth-card .hd { padding: 18px 20px; border-bottom: 1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .auth-card .hd h3 { margin: 0; font-size: 18px; font-weight: 800; }
+    .auth-card .bd { padding: 22px; }
+
+    .auth-card:hover { box-shadow: 0 22px 54px rgba(0,135,83,.16), 0 6px 16px rgba(16,24,40,.08); transform: translateY(-1px); transition: box-shadow .2s ease, transform .12s ease; }
+
+    .hint { font-size: 12px; color: var(--ogun-muted); }
+
+    .form-label { font-size: 12px; color: var(--ogun-muted); margin-bottom: 6px; font-weight: 600; }
+    .form-control { border: 1px solid var(--border); border-radius: 12px; padding: 12px 12px; height: auto; box-shadow: none; }
+    .form-control:focus { border-color: var(--ogun-green); box-shadow: 0 0 0 3px rgba(0,135,83,.12); }
+
+    .input-group-text { background: #fff; border: 1px solid var(--border); border-right: none; border-radius: 12px 0 0 12px; color:#334155; }
+    .input-group .form-control { border-left: none; border-radius: 0 12px 12px 0; }
+
+    .btn-primary-ogun { background: var(--ogun-green); color:#fff; border:none; border-radius: 999px; padding: 12px 22px; font-weight: 800; letter-spacing:.02em; min-width: 180px; box-shadow: 0 10px 22px rgba(0,135,83,.18); }
+    .btn-primary-ogun:hover { background: var(--ogun-green-dark); }
+
+    .btn-outline-ogun { background: #fff; color: var(--ogun-green); border:1px solid var(--ogun-green); border-radius: 999px; padding: 12px 22px; font-weight: 800; letter-spacing:.02em; min-width: 160px; }
+    .btn-outline-ogun:hover { background: #eefaf4; }
+
+    .btn-row { display:flex; gap:12px; justify-content:center; }
+
+    .messages { padding-left: 0; list-style: none; }
+    .messages .alert { border-radius: 12px; }
+
+    .footer-note { text-align:center; margin-top: 12px; font-size: 12px; color: var(--ogun-muted); }
+
+    .stepper { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:12px; font-size:12px; font-weight:700; color:#475569; margin-top: 6px; }
+    .stepper .dot { width: 22px; height: 22px; border-radius: 999px; border: 2px solid #cbd5e1; display:flex; align-items:center; justify-content:center; }
+    .stepper .sep { width: 26px; height: 2px; background: #e2e8f0; border-radius: 2px; }
+    .stepper .active .dot { border-color: var(--ogun-green); background: #eefaf4; color: var(--ogun-green-dark); }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="container wrap">
+            <h1 class="page-title">Driver Theory Test ({{ type|title }})</h1>
+      <p class="page-sub">Candidate Authentication</p>
+      <div class="stepper">
+        <div class="step active"><span class="dot">1</span> <span>Authenticate</span> <span class="sep"></span></div>
+        <div class="step"><span class="dot">2</span> <span>Photo</span> <span class="sep"></span></div>
+        <div class="step"><span class="dot">3</span> <span>Exam</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="auth-wrap">
+    <div class="container">
+      <div class="auth-card">
+        <div class="hd">
+          <h3><i class="fa fa-user-circle"></i> Enter {{ type|title }} Number</h3>
+        </div>
+        <div class="bd">
+
+          {% if messages %}
+          <ul class="messages">
+            {% for msg in messages %}
+              <li><div class="alert alert-{{ msg.level_tag }}" role="alert">{{ msg.message }}</div></li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          <form class="contact-form" action="/ap/verify_candidate" id="authentication" method="POST" novalidate>
+            {% csrf_token %}
+            <label for="examination_number" class="form-label">{{ type|title }} Number</label>
+            <div class="input-group" style="margin-bottom: 8px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-id-card"></i></span>
+              </div>
+              <input type="text" id="examination_number" name="examination_number" class="form-control" placeholder="Enter your {{ type|lower }} number" required />
+            </div>
+            <div class="hint">Ensure the number is entered exactly as issued.</div>
+
+            <div class="text-center" style="margin-top: 16px;">
+              <div class="btn-row">
+                <button type="submit" class="btn-primary-ogun"><i class="fa fa-sign-in"></i> Begin Test</button>
+                <button type="button" class="btn-outline-ogun" onclick="window.history.go(-1); return false;"><i class="fa fa-arrow-left"></i> Go Back</button>
+              </div>
+            </div>
+          </form>
+
+          <div class="footer-note">
+            Your information will be verified against Ogun State records.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-section">
+    <div class="container pt20 pb20">
+      <p style="color:#fff; margin:0;">Copyright &copy; 2025</p>
+    </div>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="/static/core/bootstrap/js/jquery.parallax.js"></script>
+  <script src="/static/core/bootstrap/js/jquery.simple-text-rotator.min.js"></script>
+  <script src="/static/core/bootstrap/js/isotope.pkgd.min.js"></script>
+  <script src="/static/core/bootstrap/js/owl.carousel.min.js"></script>
+  <script src="/static/core/bootstrap/js/magnific-popup.min.js"></script>
+  <script src="/static/core/bootstrap/js/jquery.scrollUp.js"></script>
+  <script src="/static/core/bootstrap/js/wow.min.js"></script>
+  <script src="/static/core/bootstrap/js/particles.min.js"></script>
+  <script src="/static/core/bootstrap/js/init-particles.js"></script>
+  <script src="/static/core/bootstrap/js/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<!--header-->
+{% include 'core/header.html' %}
+
+<!--aside-->
+{% include 'core/aside.html' %}
+
+
+<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+				Syncronize Data
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href="/ap/dashboard/"><i class="fa fa-dashboard"></i> Home</a></li>
+				<li class="active">Syncronize Data</li>
+			</ol>
+		</section>
+
+		<!-- Main content -->
+		<section class="content">
+			<!-- Info boxes -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="box box-info">
+						<div class="box-header with-border">
+							<h3 class="box-title">Select Destination</h3>
+						</div>
+						<div class="form-horizontal">
+							<div class="box-body">
+								<div class="form-group">
+									<div class="row" style="margin-left: 2%;">
+										<div>
+											<a href="/synchro/confirm/center/?destination=remote" class="btn btn-primary">Sync Local to Online</a>
+											<a href="/synchro/confirm/center/?destination=local" class="btn btn-primary">Sync online to local</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer">
+								<span id="ContentPlaceHolder1_lblMsg" style="color:Red;"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
+
+<!--footer-->
+{% include 'core/footer.html' %}
+
+<!--control aside-->
+{% include 'core/c_aside.html' %}
+
+{% endblock %}

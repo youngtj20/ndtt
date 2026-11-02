@@ -1,0 +1,11 @@
+{% for category in categories %}
+<tr>
+  <td>{{ category.title }}</td>
+  <td>{{ category.fees }}</td>
+  <td>
+      <a class="fa fa-edit" href="/ap/category/edit/{{category.id}}/"></a>&nbsp;&nbsp;&nbsp;
+      <span style="visibility: hidden;">1</span>
+      <button type='button' name='{{category.id}}' id='delete' class='btn btn-primary'>Delete</button>
+  </td>
+</tr>
+{% endfor %}

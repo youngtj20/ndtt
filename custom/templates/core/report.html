@@ -1,0 +1,98 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<!--header-->
+{% include 'core/header.html' %}
+
+<!--aside-->
+{% include 'core/aside.html' %}
+
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">View Payment</h3>
+                        </div>
+                        <div class="form-horizontal">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label class="col-sm-2">From Date</label>
+                                    <div class="col-sm-2">
+                                        <input name="frm" id="frm" class="form-control date" data-date-format="mm/dd/yyyy" data-provide="datepicker" type="text">
+                                    </div>
+                                    <label class="col-sm-2">To Date</label>
+                                    <div class="col-sm-2">
+                                        <input name="to" id="to" class="form-control date" data-date-format="mm/dd/yyyy" data-provide="datepicker" type="text">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <select class="form-control">
+                                            <option selected="selected" value="All">All</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input class="btn btn-primary" id="paymentf"  type="submit" value="Show">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row" style="margin-left: 2%;">
+                                        <div>
+                                            <table class="table table-bordered" rules="all" id="ContentPlaceHolder1_grdMain" style="border-collapse:collapse;" cellspacing="0" border="1">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">S/No</th>
+                                                        <th scope="col">Transaction Id</th>
+                                                        <th scope="col">Amount</th>
+                                                        <th scope="col">Description</th>
+                                                        <th scope="col">CurrencyCode</th>
+                                                        <th scope="col">Mobile Number</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <span id="ContentPlaceHolder1_lblMsg" style="color:Red;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		$('#paymentf').click(function(){
+    			var frm = $('#frm').val();
+    			var to = $('#to').val();
+    			$.getJSON('/ap/payment/report/api/?frm=' + frm + '&to=' + to, function(jd){
+    				$('tbody').html('');
+    				$.each(jd['payments'], function( obj ){
+    					$('tbody').append('<tr>' +
+    					'<td>' + (obj + 1) + '</td>' +
+    					'<td>' + jd['payments'][obj].transaction_ref + '</td>' +
+    					'<td>' + jd['payments'][obj].amount + '</td>' +
+    					'<td>' + jd['payments'][obj].description + '</td>' +
+    					'<td>' + 'NGN' + '</td>' +
+    					'<td>' + jd['payments'][obj].mobile_number + '</td>' +
+    					'</tr>');
+    				});
+    			});
+    		});
+    	});
+    </script>
+
+    <!--footer-->
+    {% include 'core/footer.html' %}
+
+{% endblock %}
